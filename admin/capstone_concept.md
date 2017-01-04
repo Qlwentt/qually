@@ -1,6 +1,3 @@
-# Qually
-*a job recommender app done in Django*
-
 ## Concept Components
 ### Problem Statement: 
   
