@@ -74,29 +74,49 @@ def tfidf(word, texfile, textfiles):
 
 ########
 # Request to Indeed API for job ad list should go here
-def get_job_ad_urls(num_records):
+
+indeed_request_url="http://api.indeed.com/ads/apisearch?publisher=9253729351823762&q=software engineer&l=seattle%2C+wa&sort=&radius=&st=&jt=&start={}&limit=1000&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2&format=json"
+
+
+def get_job_urls_batch(request_url):
+    response = requests.get(request_url)
+    json_data=response.json()
+    job_ad_urls=[]
+    # print type(json_data["results"])
+    for i, result in enumerate(json_data["results"]):
+        # print result
+        this_url= result["url"]
+        job_ad_urls.append(this_url)  
+        # print this_url
+    return job_ad_urls
+
+def get_mult_batches(request_url,num_records):
     start = 0
-    for i in range((num_records-1)//25):
-        print "start: {}".format(start)
-        start+=25
+    batches =[]
+    for i in range(((num_records-1)//25)+1):
+       request_url=request_url.format(start)
+       this_batch=get_job_urls_batch(request_url)
+       batches.extend(this_batch)
+       start+=25
+    return batches
 
+# get_job_urls_batch(indeed_request_url)
+these_batches = get_mult_batches(indeed_request_url,100)
 
-get_job_ad_urls(100)
-(num_records-1)/25
-indeed_request_url="http://api.indeed.com/ads/apisearch?publisher=9253729351823762&q=software engineer&l=seattle%2C+wa&sort=&radius=&st=&jt=&start=0&limit=1000&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2&format=json"
+print "100 job urls: {}".format(these_batches)
+
 # indeed_request_url+=.format(num_times)
-response = requests.get(indeed_request_url)
-print response.status_code
-print response.headers['content-type']
+
+
 # print "Number of results: {}".format(len(response.json()["results"]))
-json_data=response.json()
+
 # Get url of a job ad from Indeed API response
-job_ad_url= json_data["results"][0]["url"]
-print job_ad_url
+
+
 #########
 
 # get get text from job ad url
-
+job_ad_url = these_batches[0]
 #test_url = "https://jobs.lever.co/palantir/7a2cf40e-ab26-4b14-ae1d-0919625816ce"
 html = urllib2.urlopen(job_ad_url).read()
 
