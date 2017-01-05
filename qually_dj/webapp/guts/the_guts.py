@@ -42,8 +42,12 @@ def tf(word, textfile):
 #A generator expression is passed to the sum() function.
 
 #text files is a list of text files
+# number of text files that have these word
 def n_containing(word, textfiles):
     return sum(1 for textfile in textfiles if word in textfile.words)
+
+# take most common queries (software engineer, data scientist,etc. ) and pre compute keyword frequency to reduce runtime
+# replace above with..
 
 #computes "inverse document frequency" which measures 
 #how common a word is among all documents in textfile_list. 
@@ -117,6 +121,7 @@ print "100 job urls: {}".format(these_batches)
 
 # get get text from job ad url
 job_ad_url = these_batches[0]
+print "First job ad url: {}".format(job_ad_url)
 #test_url = "https://jobs.lever.co/palantir/7a2cf40e-ab26-4b14-ae1d-0919625816ce"
 html = urllib2.urlopen(job_ad_url).read()
 
@@ -125,23 +130,17 @@ html = urllib2.urlopen(job_ad_url).read()
 # tidy, errors = tidy_document(html)
 # # soup = BeautifulSoup(tidy)
 soup = BeautifulSoup(html)
+job_ad_text = soup.find('span', attrs={'id': 'job_summary'}).text
+
+print "hellooooooooooooooooooooo"
+print job_ad_text
+print "hellooooooooooooooooooooo"
+print type(job_ad_text)
 
 
-texts = soup.findAll(text=True)
+# print job_ad
 
-def visible(element):
-    if element.parent.name in ['style', 'script', '[document]', 'head', 'title']:
-        return False
-    elif re.match('<!--.*-->', str(element)):
-        return False
-    return True
-
-visible_texts = filter(visible, texts)
-job_ad = ' '.join(visible_texts)
-
-print job_ad
-
-job_ad_nouns = tb(job_ad).noun_phrases
+job_ad_nouns = tb(job_ad_text).noun_phrases
 print "Nouns:{}".format(job_ad_nouns) 
 
 
