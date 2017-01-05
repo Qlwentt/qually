@@ -142,36 +142,36 @@ job_ad = ' '.join(visible_texts)
 print job_ad
 
 job_ad_nouns = tb(job_ad).noun_phrases
-# print "Nouns:{}".format(job_ad_nouns) 
+print "Nouns:{}".format(job_ad_nouns) 
 
 
 
 
-# job_ad_nouns=' '.join(job_ad_nouns)
-# print job_ad_nouns
-# document1 = tb(job_ad_nouns)
+job_ad_nouns=' '.join(job_ad_nouns)
+print job_ad_nouns
+document1 = tb(job_ad_nouns)
 
-# document2 = tb("""Python, from the Greek word blahblah, is a genus of
-# nonvenomous pythons[2] found in Africa and Asia. Currently, 7 species are
-# recognised.[2] A member of this genus, P. reticulatus, is among the longest
-# snakes known.""")
+document2 = tb("""Python, from the Greek word blahblah, is a genus of
+nonvenomous pythons[2] found in Africa and Asia. Currently, 7 species are
+recognised.[2] A member of this genus, P. reticulatus, is among the longest
+snakes known.""")
 
-# document3 = tb("""The Colt Python is a .357 Magnum caliber revolver formerly
-# manufactured by Colt's Manufacturing Company of Hartford, Connecticut.
-# It is sometimes referred to as a "Combat Magnum".[1] It was first introduced
-# in 1955, the same year as Smith &amp; Wesson's M29 .44 Magnum. The now discontinued
-# Colt Python targeted the premium revolver market segment. Some firearm
-# collectors and writers such as Jeff Cooper, Ian V. Hogg, Chuck Hawks, Leroy
-# Thompson, Renee Smeets and Martin Dougherty have described the Python as the
-# finest production revolver ever made.""")
+document3 = tb("""The Colt Python is a .357 Magnum caliber revolver formerly
+manufactured by Colt's Manufacturing Company of Hartford, Connecticut.
+It is sometimes referred to as a "Combat Magnum".[1] It was first introduced
+in 1955, the same year as Smith &amp; Wesson's M29 .44 Magnum. The now discontinued
+Colt Python targeted the premium revolver market segment. Some firearm
+collectors and writers such as Jeff Cooper, Ian V. Hogg, Chuck Hawks, Leroy
+Thompson, Renee Smeets and Martin Dougherty have described the Python as the
+finest production revolver ever made.""")
 
-# textfiles = [document1, document2, document3]
-# for i, textfile in enumerate(textfiles):
-#     print("Top words in document {}".format(i + 1))
-#     scores = {word: tfidf(word, textfile, textfiles) for word in textfile.words}
-#     sorted_words = sorted(scores.items(), key=lambda x: x[1], reverse=True)
-#     for word, score in sorted_words[:100]:
-#         print("\tWord: {}, TF-IDF: {}".format(tb(word), round(score, 5)))
+textfiles = [document1, document2, document3]
+for i, textfile in enumerate(textfiles):
+    print("Top words in document {}".format(i + 1))
+    scores = {word: tfidf(word, textfile, textfiles) for word in textfile.words}
+    sorted_words = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+    for word, score in sorted_words[:100]:
+        print("\tWord: {}, TF-IDF: {}".format(tb(word), round(score, 5)))
 
 
 
