@@ -19,18 +19,6 @@ import unidecode
 import requests
 
 
-# #0 for bumpy, 1 for smooth
-# features = [[140, 1], [130, 1], [150, 0], [170, 0]]
-# #0 for apple, 1 for orange
-# labels = [0, 0, 1, 1]
-
-# classifier= tree.DecisionTreeClassifier()
-
-# classifier= classifier.fit(features,labels)
-
-# print classifier.predict([[160,0]])
-
-
 #term frequency is the number of times a word appears in a text file (textfile), 
 #normalized (averaged) by dividing by the total number of words in that file. 
 
@@ -38,16 +26,19 @@ import requests
 def tf(word, textfile):
     return textfile.words.count(word) / len(textfile.words)
 
+
 #returns the number of documents containing word. 
 #A generator expression is passed to the sum() function.
 
 #text files is a list of text files
-# number of text files that have these word
+# number of text files that have these words
 def n_containing(word, textfiles):
     return sum(1 for textfile in textfiles if word in textfile.words)
 
 # take most common queries (software engineer, data scientist,etc. ) and pre compute keyword frequency to reduce runtime
 # replace above with..
+
+
 
 #computes "inverse document frequency" which measures 
 #how common a word is among all documents in textfile_list. 
@@ -59,34 +50,35 @@ def n_containing(word, textfiles):
 #Add 1 to the divisor to prevent division by zero.
 
 def idf(word, textfiles ):
-    #bottom = (1 + n_containing(word, textfiles))
-    # print "bottom: {}".format(bottom)
-
-    #top = len(textfiles)
-    # print "top: {}".format(top)
-
-    #num = math.log((3)/4)
-    # print "log: {}".format(num)
 
     result = math.log((len(textfiles)) / (1 + n_containing(word, textfiles)))
     # print "result: {}".format(result)
     return result
 
+
+
+
 #computes the TF-IDF score. It is simply the product of  tf and idf.
 def tfidf(word, texfile, textfiles):
     return tf(word, texfile) * idf(word, textfiles)
 
+
+
+
+
 ########
-# Request to Indeed API for job ad list should go here
+# Request to Indeed API given a request url
+# parameters will be changed according to user input
+# right now it is hard coded
 
 indeed_request_url="http://api.indeed.com/ads/apisearch?publisher=9253729351823762&q=software engineer&l=seattle%2C+wa&sort=&radius=&st=&jt=&start={}&limit=1000&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2&format=json"
 
-
+# gets one batch (25) job ad urls
 def get_job_urls_batch(request_url):
     response = requests.get(request_url)
     json_data=response.json()
     job_ad_urls=[]
-    # print type(json_data["results"])
+   
     for i, result in enumerate(json_data["results"]):
         # print result
         this_url= result["url"]
@@ -94,6 +86,7 @@ def get_job_urls_batch(request_url):
         # print this_url
     return job_ad_urls
 
+# gets num_records of job urls 
 def get_mult_batches(request_url,num_records):
     start = 0
     batches =[]
@@ -104,73 +97,68 @@ def get_mult_batches(request_url,num_records):
        start+=25
     return batches
 
-# get_job_urls_batch(indeed_request_url)
-these_batches = get_mult_batches(indeed_request_url,100)
-
-print "100 job urls: {}".format(these_batches)
-
-# indeed_request_url+=.format(num_times)
+# call get_mult_batches to get 100 job urls 
+these_batches = get_mult_batches(indeed_request_url,1000)
 
 
-# print "Number of results: {}".format(len(response.json()["results"]))
+print "10 job urls: {}".format(these_batches[:1000])
+
+
+
 
 # Get url of a job ad from Indeed API response
 
 
 #########
+def get_job_text_list(job_ad_url_list):
+    # get get text from first job ad url
+    job_text_list=[]
+    for i, job_ad_url in enumerate(job_ad_url_list):
+        html = urllib2.urlopen(job_ad_url).read()
+        soup = BeautifulSoup(html)
+        job_ad_text = soup.find('span', attrs={'id': 'job_summary'}).text
 
-# get get text from job ad url
-job_ad_url = these_batches[0]
-print "First job ad url: {}".format(job_ad_url)
-#test_url = "https://jobs.lever.co/palantir/7a2cf40e-ab26-4b14-ae1d-0919625816ce"
-html = urllib2.urlopen(job_ad_url).read()
+        print "\n"
+        print job_ad_text
+        print "\n" 
+        job_text_list.append(job_ad_text)
+    return job_text_list
+
+def get_noun_list(text_list):
+    noun_list=[]
+    for i, text in enumerate(text_list):
+
+        # get all the nouns out of job_ad_text
+        job_ad_nouns = tb(text).noun_phrases
+        print "Unicode list of job ad noun phrases:{}".format(job_ad_nouns) 
+
+        #change list to string
+        job_ad_nouns=' '.join(job_ad_nouns)
+        print job_ad_nouns
+        noun_list.append(tb(job_ad_nouns))
+
+    return noun_list
+
+noun_list=get_noun_list(get_job_text_list(these_batches[:1000]))
+
+# document1 = tb(noun_list[0])
+
+# document2 = tb(noun_list[1])
+
+# document3 = tb(noun_list[2])
 
 
 
-# tidy, errors = tidy_document(html)
-# # soup = BeautifulSoup(tidy)
-soup = BeautifulSoup(html)
-job_ad_text = soup.find('span', attrs={'id': 'job_summary'}).text
-
-print "hellooooooooooooooooooooo"
-print job_ad_text
-print "hellooooooooooooooooooooo"
-print type(job_ad_text)
-
-
-# print job_ad
-
-job_ad_nouns = tb(job_ad_text).noun_phrases
-print "Nouns:{}".format(job_ad_nouns) 
-
-
-
-
-job_ad_nouns=' '.join(job_ad_nouns)
-print job_ad_nouns
-document1 = tb(job_ad_nouns)
-
-document2 = tb("""Python, from the Greek word blahblah, is a genus of
-nonvenomous pythons[2] found in Africa and Asia. Currently, 7 species are
-recognised.[2] A member of this genus, P. reticulatus, is among the longest
-snakes known.""")
-
-document3 = tb("""The Colt Python is a .357 Magnum caliber revolver formerly
-manufactured by Colt's Manufacturing Company of Hartford, Connecticut.
-It is sometimes referred to as a "Combat Magnum".[1] It was first introduced
-in 1955, the same year as Smith &amp; Wesson's M29 .44 Magnum. The now discontinued
-Colt Python targeted the premium revolver market segment. Some firearm
-collectors and writers such as Jeff Cooper, Ian V. Hogg, Chuck Hawks, Leroy
-Thompson, Renee Smeets and Martin Dougherty have described the Python as the
-finest production revolver ever made.""")
-
-textfiles = [document1, document2, document3]
+textfiles = noun_list
 for i, textfile in enumerate(textfiles):
     print("Top words in document {}".format(i + 1))
     scores = {word: tfidf(word, textfile, textfiles) for word in textfile.words}
     sorted_words = sorted(scores.items(), key=lambda x: x[1], reverse=True)
-    for word, score in sorted_words[:100]:
+    for word, score in sorted_words[:10]:
         print("\tWord: {}, TF-IDF: {}".format(tb(word), round(score, 5)))
+
+
+
 
 
 
