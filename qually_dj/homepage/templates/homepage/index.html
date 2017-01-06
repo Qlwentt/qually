@@ -1,0 +1,18 @@
+{% extends "homepage/header.html" %}
+
+{% block content %}
+<h1>Qually</h1>
+<ul class="topnav" id="myTopnav">
+  <li><a href="#home">Home</a></li>
+  <li><a href="#news">News</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li><a href="#about">About</a></li>
+  <li class="icon">
+    <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+  </li>
+</ul>
+<p>get ready to find a job!</p>
+{% include "homepage/includes/htmlsnippet.html" %}
+
+<h1>Site Footer</h1>
+{% endblock %}

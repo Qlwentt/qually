@@ -55,18 +55,18 @@ def n_containing(word, textfiles):
 #Add 1 to the divisor to prevent division by zero.
 
 def idf(word, textfiles ):
-	#bottom = (1 + n_containing(word, textfiles))
-	# print "bottom: {}".format(bottom)
+    #bottom = (1 + n_containing(word, textfiles))
+    # print "bottom: {}".format(bottom)
 
-	#top = len(textfiles)
-	# print "top: {}".format(top)
+    #top = len(textfiles)
+    # print "top: {}".format(top)
 
-	#num = math.log((3)/4)
-	# print "log: {}".format(num)
+    #num = math.log((3)/4)
+    # print "log: {}".format(num)
 
-	result = math.log((len(textfiles)) / (1 + n_containing(word, textfiles)))
-	# print "result: {}".format(result)
-	return result
+    result = math.log((len(textfiles)) / (1 + n_containing(word, textfiles)))
+    # print "result: {}".format(result)
+    return result
 
 #computes the TF-IDF score. It is simply the product of  tf and idf.
 def tfidf(word, texfile, textfiles):
