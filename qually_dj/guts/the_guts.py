@@ -98,29 +98,30 @@ def get_mult_batches(request_url,num_records):
     return batches
 
 # call get_mult_batches to get 100 job urls 
-these_batches = get_mult_batches(indeed_request_url,1000)
+these_batches = get_mult_batches(indeed_request_url,10)
 
 
-print "10 job urls: {}".format(these_batches[:1000])
+print "10 job urls: {}".format(these_batches[:1])
 
 
-
-
+def fix_spacing(text):
+    return re.sub(r'([a-z:.)])([A-Z])', r'\1 \2', text)
+    
 # Get url of a job ad from Indeed API response
 
 
 #########
 def get_job_text_list(job_ad_url_list):
-    # get get text from first job ad url
+    # get get text from  job ad urls
     job_text_list=[]
     for i, job_ad_url in enumerate(job_ad_url_list):
         html = urllib2.urlopen(job_ad_url).read()
         soup = BeautifulSoup(html)
         job_ad_text = soup.find('span', attrs={'id': 'job_summary'}).text
-
-        print "\n"
-        print job_ad_text
-        print "\n" 
+        job_ad_text=fix_spacing(job_ad_text)
+        # print "\n"
+        # print job_ad_text
+        # print "\n" 
         job_text_list.append(job_ad_text)
     return job_text_list
 
@@ -130,16 +131,21 @@ def get_noun_list(text_list):
 
         # get all the nouns out of job_ad_text
         job_ad_nouns = tb(text).noun_phrases
-        print "Unicode list of job ad noun phrases:{}".format(job_ad_nouns) 
+        # print "Unicode list of job ad noun phrases:{}".format(job_ad_nouns) 
 
         #change list to string
         job_ad_nouns=' '.join(job_ad_nouns)
-        print job_ad_nouns
+        # print job_ad_nouns
         noun_list.append(tb(job_ad_nouns))
 
     return noun_list
 
-noun_list=get_noun_list(get_job_text_list(these_batches[:1000]))
+job_text_list1=get_job_text_list(these_batches[:2])
+
+print job_text_list1[0]
+print tb(job_text_list1[0]).sentences
+
+noun_list=get_noun_list(job_text_list1)
 
 # document1 = tb(noun_list[0])
 
