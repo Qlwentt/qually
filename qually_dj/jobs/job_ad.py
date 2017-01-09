@@ -75,5 +75,7 @@ test_job_ads=JobAd.make_job_ads_from_api(APIresponse)
 # print len(test_job_ads)
 # print type(test_job_ads)
 # print type(test_job_ads[0])
-print dir(test_job_ads[0])
+# print dir(test_job_ads[0])
+# print test_job_ads[0].content
+
 
