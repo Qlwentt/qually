@@ -1,9 +1,20 @@
+# _*_ coding:utf-8 _*_
 from __future__ import unicode_literals
+
+
+import sys  
+import unidecode
+import re
+
 import urllib2
 from textblob import TextBlob as tb
 from BeautifulSoup import BeautifulSoup
 import re
 import requests
+import unidecode
+
+reload(sys)  
+sys.setdefaultencoding('utf8')
 
 
 
@@ -36,7 +47,9 @@ class JobAd(object):
 
 	@staticmethod
 	def fix_spacing(text):
-		  return re.sub(r'([a-z:.)])([A-Z])', r'\1 \2', text)
+		  text=re.sub(r'([a-z:.)])([A-Z]|\d\.)', r'\1 \2', text)
+		  text=text.decode("utf-8").replace(u"\u2022", " ").encode("utf-8")
+		  return text
 
 	@classmethod
 	def make_job_ads_from_api(cls,api_json_resp):
