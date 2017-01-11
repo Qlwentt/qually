@@ -4,13 +4,13 @@ from django.db import models
 
 # Create your models here.
 class SavedJob(models.Model):
-	title = models.CharField()
-	url = models.CharField()
+	title = models.CharField(max_length=255)
+	url = models.TextField()
 	snippet = models.TextField()
-	key = models.CharField()
+	key = models.CharField(max_length=255)
 	date = models.DateTimeField()
-	company = models.CharField()
-	location = models.CharField()
+	company = models.CharField(max_length=255)
+	location = models.CharField(max_length=255)
 
 	def __unicode__(self):
 		return self.title
