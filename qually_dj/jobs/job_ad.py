@@ -82,15 +82,15 @@ class JobAd(object):
 
 
 
-# indeed_request_url="http://api.indeed.com/ads/apisearch?publisher=9253729351823762&q=software engineer&l=seattle%2C+wa&sort=&radius=&st=&jt=&start={}&limit=1000&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2&format=json"
-# APIresponse = requests.get(indeed_request_url).json()['results']
-# test_job_ads=JobAd.make_job_ads_from_api(APIresponse)
-# print test_job_ads
-# print len(test_job_ads)
-# print type(test_job_ads)
-# print type(test_job_ads[0])
+# # indeed_request_url="http://api.indeed.com/ads/apisearch?publisher=9253729351823762&q=software engineer&l=seattle%2C+wa&sort=&radius=&st=&jt=&start={}&limit=1000&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2&format=json"
+# # APIresponse = requests.get(indeed_request_url).json()['results']
+# # test_job_ads=JobAd.make_job_ads_from_api(APIresponse)
+# # print test_job_ads
+# # print len(test_job_ads)
+# # print type(test_job_ads)
+# # print type(test_job_ads[0])
 
-# print dir(test_job_ads[0])
-# print test_job_ads[0].content
+# # print dir(test_job_ads[0])
+# # print test_job_ads[0].content
 
 

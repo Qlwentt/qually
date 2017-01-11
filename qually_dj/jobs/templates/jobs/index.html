@@ -4,17 +4,9 @@
 <h1>Qually</h1>
 <p>This is the  show page for jobs </p>
 
+{% for job in jobs %}
+<h2><a href= '{{job.url}}'>{{ job.title }}</a></h2>
+<p>{{ job.snippet }}</p>
+{% endfor %}
 
-<h2>{{ content.0 }}</h2>
-<p>{{ content.1 }}</p>
-
-<h2>Job #2</h2>
-<p>Job description</p>
-
-<h2>Job #3</h2>
-<p>Job description</p>
-
-<p>....</p>
-
-<h1>Site Footer</h1>
 {% endblock %}

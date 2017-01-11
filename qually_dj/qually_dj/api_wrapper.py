@@ -7,7 +7,7 @@ dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 PUB_ID=os.environ.get('PUB_ID')
 
-from qually_dj.jobs.job_ad import JobAd
+from jobs.job_ad import JobAd
 
 from django.conf import settings
 
@@ -73,6 +73,6 @@ class QuallyApiWrapper(object):
 
 # print dir(test_job_ads[0])
 # print test_job_ads[0].content
-
+	print "hello"
 
 
