@@ -6,9 +6,11 @@
 
 <p>get ready to find a job!</p>
 {% include "homepage/includes/htmlsnippet.html" %}
-<form role 'form' method= 'POST' action "{% url 'jobs:index' %}" >{% csrf_token %}
+<form role 'form' method= 'POST' action= "{% url 'jobs:index' %}" >{% csrf_token %}
 {{ form.as_p }}
-<button type = 'submit'>See My Jobs</button>
+<input type="submit"  value="Sign Up"></input>
+
+<!-- <button type = 'submit'>See My Jobs</button> -->
 </form>
 
 

@@ -9,11 +9,15 @@ from jobs.forms import SeeJobsForm
 
 # Create your views here.
 def index(request):
-	
-	form_class = SeeJobsForm
-	job_ads=QuallyApiWrapper.get_job_ads({'search_term': form_class['job_title'],
-						  					'city': form_class['city'],
-						  					'state': form_class['state']})
+	form = SeeJobsForm(request.POST)
+
+	if form.is_valid():
+		form=form.cleaned_data
+
+		job_ads=QuallyApiWrapper.get_job_ads({'search_term': form['job_title'],
+							  					'city': form['city'],
+							  					'state': form['state']})
+
 	
 	return render(request, 'jobs/index.html', {'jobs': job_ads})
 
