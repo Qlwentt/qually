@@ -47,7 +47,7 @@ class JobAd(object):
 
 	@staticmethod
 	def fix_spacing(text):
-		  text=re.sub(r'([a-z.])([A-Z]|\d\.)', r'\1 \2', text)
+		  text=re.sub(r'([a-z:.)])([A-Z]|\d\W)', r'\1 \2', text)
 		  text=text.decode("utf-8").replace(u"\u2022", " ").encode("utf-8")
 		  return text
 

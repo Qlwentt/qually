@@ -30,11 +30,11 @@ class QuallyApiWrapper(object):
 	
 	
 	@classmethod
-	def get_job_ads(cls, user_query):
+	def get_job_ads(cls, user_query, start):
 		base_url = "http://api.indeed.com/ads/apisearch?"
 		publisher = "publisher="+ PUB_ID 
 		print publisher
-		rq_options = "sort=&radius=&st=&jt=&start={}&limit=1000&fromage=&filter=&latlong=1&co=us&chnl="
+		rq_options = "sort=&radius=&st=&jt=&start={}&limit=1000&fromage=&filter=&latlong=1&co=us&chnl=".format(start)
 	
 		#need to ask someone to help me/figure out get real user ip address and agent
 		user_info="userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29"
@@ -57,7 +57,28 @@ class QuallyApiWrapper(object):
 		APIresponse=requests.get(indeed_request_url).json()['results']
 		return JobAd.make_job_ads_from_api(APIresponse)
 
-	
+	# def get_job_urls_batch(request_url):
+ #    response = requests.get(request_url)
+ #    json_data=response.json()
+ #    job_ad_urls=[]
+   
+ #    for i, result in enumerate(json_data["results"]):
+ #        # print result
+ #        this_url= result["url"]
+ #        job_ad_urls.append(this_url)  
+ #        # print this_url
+ #    return job_ad_urls
+
+	# # gets num_records of job urls 
+	# def get_mult_batches(request_url,num_records):
+	#     start = 0
+	#     batches =[]
+	#     for i in range(((num_records-1)//25)+1):
+	#        request_url=request_url.format(start)
+	#        this_batch=get_job_urls_batch(request_url)
+	#        batches.extend(this_batch)
+	#        start+=25
+	#     return batches
 
 
 
