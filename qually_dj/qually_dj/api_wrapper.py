@@ -57,6 +57,16 @@ class QuallyApiWrapper(object):
 		APIresponse=requests.get(indeed_request_url).json()['results']
 		return JobAd.make_job_ads_from_api(APIresponse)
 
+	
+
+
+
+
+
+
+
+
+
 # job_ads=QuallyApiWrapper.get_job_ads({'search_term': 'software engineer',
 # 						  					'city': 'seattle',
 # 						  					'state': 'WA'})

@@ -17,9 +17,9 @@ def index(request):
 		job_ads=QuallyApiWrapper.get_job_ads({'search_term': form['job_title'],
 							  					'city': form['city'],
 							  					'state': form['state']})
-
+		filtered_jobs=JobAd.filter_by_exp(form['yrs_exp'], job_ads)
 	
-	return render(request, 'jobs/index.html', {'jobs': job_ads})
+	return render(request, 'jobs/index.html', {'jobs': filtered_jobs})
 
 
 def show(request):

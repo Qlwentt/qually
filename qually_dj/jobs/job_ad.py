@@ -47,7 +47,7 @@ class JobAd(object):
 
 	@staticmethod
 	def fix_spacing(text):
-		  text=re.sub(r'([a-z\:\.)])([A-Z]|\d\.)', r'\1 \2', text)
+		  text=re.sub(r'([a-z.])([A-Z]|\d\.)', r'\1 \2', text)
 		  text=text.decode("utf-8").replace(u"\u2022", " ").encode("utf-8")
 		  return text
 
@@ -80,7 +80,59 @@ class JobAd(object):
 	    job_ad_text= JobAd.fix_spacing(job_ad_text)
 	    return job_ad_text
 
+	@staticmethod
+	def to_s(tb):
+		return ('\t' + str(tb))
 
+	@staticmethod
+	def hasNumbers(inputString):
+	    # has_digits=bool(re.search(r'\d', inputString))
+	    answer = "none"
+	    # numbers=["one","two","three","four","five","six","seven","eight","nine","ten","1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+	    get_digits={"one": 1, "1" : 1,"two": 2, "2": 2, "three": 3, "3": 3, "four": 4, "4": 4, "five": 5,"5": 5, "six": 6,"6": 6, "seven": 7,"7": 7,"eight": 8,"8": 8,"nine": 9,"9": 9,"ten": 10,"10": 10, "none": False}
+	    for number in get_digits:
+	    	words = inputString.split()
+	    	for word in words:
+	    		if number == word:
+	    			answer=number
+	    			break
+	    return get_digits[answer]
+
+
+	
+	def experience_requirement(self):
+		sentences=self.content.split(".")
+		# print sentences
+		exp_reqs=[]
+		
+		for sentence in sentences: 
+		  	if ("experience" in sentence.lower()):
+		  		has_num= JobAd.hasNumbers(JobAd.to_s(sentence))
+		  		print "======================================="
+		  		print sentence
+		  		print "name:{}, exp have:2, exp needed: {}, show job: {}".format(self.title, has_num, 2>=has_num)
+		  		if has_num:
+		  			exp_reqs.append(has_num)
+		  		  			
+		print exp_reqs
+		if exp_reqs: 
+			return min(exp_reqs)
+		else:
+			return False
+	
+	def meets_requirement(self, exp_int):
+		if exp_int >= self.experience_requirement():
+			return True
+		else:
+			return False
+
+	@classmethod
+	def filter_by_exp(cls, yrs_exp, job_ads):
+		qualified = []
+		for job_ad in job_ads:
+			if job_ad.meets_requirement(yrs_exp):
+				qualified.append(job_ad)
+		return qualified
 
 # # indeed_request_url="http://api.indeed.com/ads/apisearch?publisher=9253729351823762&q=software engineer&l=seattle%2C+wa&sort=&radius=&st=&jt=&start={}&limit=1000&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2&format=json"
 # # APIresponse = requests.get(indeed_request_url).json()['results']
