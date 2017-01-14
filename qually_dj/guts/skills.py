@@ -51,7 +51,8 @@ for skill in skills:
 	keywords.append(skill.getText())
 for cat in categories:
 	keywords.append(cat.getText())
-
+	
+# get unique values by chaging it to a set
 keywords = set(keywords)
 
 print keywords

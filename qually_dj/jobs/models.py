@@ -14,3 +14,10 @@ class SavedJob(models.Model):
 
 	def __unicode__(self):
 		return unicode(self.title)
+
+class Keyword(models.Model):
+	name = models.CharField(max_length=255)
+	category = models.CharField(max_length=255)
+
+	def __unicode__(self):
+		return unicode(self.name)
