@@ -32,7 +32,7 @@ class QuallyApiWrapper(object):
 	def get_job_ads(cls, user_query, start):
 		base_url = "http://api.indeed.com/ads/apisearch?"
 		publisher = "publisher="+ PUB_ID 
-		print publisher
+		# print publisher
 		rq_options = "sort=&radius=&st=&jt=&start={}&limit=1000&fromage=&filter=&latlong=1&co=us&chnl=".format(start)
 	
 		#need to ask someone to help me/figure out get real user ip address and agent
@@ -53,10 +53,10 @@ class QuallyApiWrapper(object):
 		# indeed_request_url= base_url+publisher+"&"+"q="+search_term+"&"+"l="+city+"%2C"+state+"&"+rq_options+"&"+user_info+"&"+format_v
 		indeed_request_url= "{base}{pub}&q={search_term}&l={city}%2C{state}&{request_ops}&{user_info}&{version}".format(
 			base=base_url,pub=publisher,search_term=search_term,city=city,state=state, request_ops=rq_options, user_info=user_info, version=format_v)
-		print "indeed request url: {}".format(indeed_request_url) 
+		# print "indeed request url: {}".format(indeed_request_url) 
 		APIresponse=requests.get(indeed_request_url).json()['results']
 
-		print "API response: {}".format(APIresponse)
+		# print "API response: {}".format(APIresponse)
 		return JobAd.make_job_ads_from_api(APIresponse)
 
 	# def get_job_urls_batch(request_url):
@@ -106,6 +106,6 @@ class QuallyApiWrapper(object):
 
 # print dir(test_job_ads[0])
 # print test_job_ads[0].content
-	print "hello"
+	# print "hello"
 
 

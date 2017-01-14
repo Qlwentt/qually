@@ -20,14 +20,15 @@ from os.path import join, dirname
 from dotenv import load_dotenv
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
-job_scan_pw=os.environ.get('JOB_SCAN_PW')
+JOB_SCAN_PW=os.environ.get('JOB_SCAN_PW')
 
-from jobs.job_ad import JobAd
+# from jobs.job_ad import JobAd
 from jobs.models import Resume
+from jobs.models import Keyword
 
 class SkillSpider(object):
 	@staticmethod
-	def login_to_jobscan:
+	def login_jobscan():
 		cj = cookielib.CookieJar()
 		br = mechanize.Browser()
 
@@ -49,20 +50,17 @@ class SkillSpider(object):
 
 		#log in
 		br.open('https://www.jobscan.co/login')
-		 
 		br.select_form(name='reg')
-
 		br.form['email']= 'quai.wentt@gmail.com'
-
-		br.form['password']= 'qually123'
-
+		br.form['password']= JOB_SCAN_PW
 		br.submit()
+		return br
 
 	@staticmethod
-	def peform_jobscan(job_desc):
+	def perform_jobscan(br,job_desc):
 		br.open('https://www.jobscan.co/')
 		br.select_form(name='form')
-		br.form['cv']= Resume.objects.first()
+		br.form['cv']= Resume.objects.first().text
 		br.form['jd']= job_desc
 		# for f in br.forms():
 		# 	print f
@@ -85,13 +83,16 @@ class SkillSpider(object):
 			
 		# get unique values by chaging it to a set
 		keywords = set(keywords)
-		
+		print keywords
+		return keywords
+	
+	@staticmethod	
 	def add_keywords_to_database(keywords):
-		for kyword in keywords
+		for kyword in keywords:
 			try:
-				Keyword.get(name=kyword)
+				Keyword.objects.get(name=kyword)
 			except Keyword.DoesNotExist: 
-				Keyword.create(name=kyword, category='none')
+				Keyword.objects.create(name=kyword, category='none')
 
 
 

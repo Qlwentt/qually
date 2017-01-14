@@ -108,9 +108,9 @@ class JobAd(object):
 		for sentence in sentences: 
 		  	if ("experience" in sentence.lower()):
 		  		has_num= JobAd.hasNumbers(JobAd.to_s(sentence))
-		  		print "======================================="
-		  		print sentence
-		  		print "name:{}, exp have:2, exp needed: {}, show job: {}".format(self.title, has_num, 2>=has_num)
+		  		# print "======================================="
+		  		# print sentence
+		  		# print "name:{}, exp have:2, exp needed: {}, show job: {}".format(self.title, has_num, 2>=has_num)
 		  		if has_num:
 		  			exp_reqs.append(has_num)
 		  		  			
