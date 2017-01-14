@@ -13,4 +13,4 @@ class SavedJob(models.Model):
 	location = models.CharField(max_length=255)
 
 	def __unicode__(self):
-		return self.title
+		return unicode(self.title)

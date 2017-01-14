@@ -6,12 +6,13 @@
 
 {% for job in jobs %}
 <h2><a href= '{{job.url}}'>{{ job.title }}</a></h2>
-<p>{{ job.snippet }}</p>
+<h4>{{ job.company }}, {{ job.location }}</h4>
+<p>{{ job.snippet|safe }}</p>
 {% endfor %}
 <div class="pagination">
     <span class="step-links">
         {% if jobs.has_previous %}
-            <a href="?page={{ jobs.previous_page_number }}">previous</a>
+            <a href="?{{request.META.QUERY_STRING}}&amp;page={{ jobs.previous_page_number }}">previous</a>
         {% endif %}
 
         <span class="current">
@@ -19,7 +20,7 @@
         </span>
 
         {% if jobs.has_next %}
-            <a href="?page={{ jobs.next_page_number }}">next</a>
+            <a href="?{{request.META.QUERY_STRING}}&amp;page={{ jobs.next_page_number }}">next</a>
         {% endif %}
     </span>
 </div>

@@ -45,6 +45,7 @@ class JobAd(object):
 		self.date=properties['date']
 
 
+
 	@staticmethod
 	def fix_spacing(text):
 		  text=re.sub(r'([a-z:.)])([A-Z]|\d\W)', r'\1 \2', text)
@@ -93,11 +94,10 @@ class JobAd(object):
 	    for number in get_digits:
 	    	words = inputString.split()
 	    	for word in words:
-	    		if number == word:
+	    		if number == word or number+"+"== word or number+"-" == word:
 	    			answer=number
-	    			break
-	    return get_digits[answer]
-
+	    			return get_digits[answer]
+	    return False
 
 	
 	def experience_requirement(self):
