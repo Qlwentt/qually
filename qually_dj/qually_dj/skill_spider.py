@@ -1,3 +1,11 @@
+from __future__ import unicode_literals
+import unidecode
+# _*_ coding:utf-8 _*_
+# encoding=utf8  
+import sys
+reload(sys)  
+sys.setdefaultencoding('utf8')
+
 import mechanize
 from BeautifulSoup import BeautifulSoup
 import urllib2 
@@ -6,14 +14,16 @@ import requests
 import random
 import time
 import os
+
+
 from os.path import join, dirname
 from dotenv import load_dotenv
-
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 job_scan_pw=os.environ.get('JOB_SCAN_PW')
 
 from jobs.job_ad import JobAd
+from jobs.models import Resume
 
 class SkillSpider(object):
 	@staticmethod
@@ -48,13 +58,40 @@ class SkillSpider(object):
 
 		br.submit()
 
+	@staticmethod
 	def peform_jobscan(job_desc):
 		br.open('https://www.jobscan.co/')
 		br.select_form(name='form')
-		br.form['cv']= resume
+		br.form['cv']= Resume.objects.first()
 		br.form['jd']= job_desc
-		for f in br.forms():
-			print f
+		# for f in br.forms():
+		# 	print f
+		br.submit()
+		return BeautifulSoup(br.response())
 
-		# time.sleep(5)
+	@staticmethod
+	def get_keywords(soup):
+		# get skills
+		skills=soup.findAll("span", attrs={"data-skillkey":True})
+		# get categories
+		categories = soup.findAll(attrs={"data-skill":True})
+		keywords =[]
+		
+		# get text from html
+		for skill in skills:
+			keywords.append(skill.getText())
+		for cat in categories:
+			keywords.append(cat.getText())
+			
+		# get unique values by chaging it to a set
+		keywords = set(keywords)
+		
+	def add_keywords_to_database(keywords):
+		for kyword in keywords
+			try:
+				Keyword.get(name=kyword)
+			except Keyword.DoesNotExist: 
+				Keyword.create(name=kyword, category='none')
+
+
 
