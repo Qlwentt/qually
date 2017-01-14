@@ -21,3 +21,10 @@ class Keyword(models.Model):
 
 	def __unicode__(self):
 		return unicode(self.name)
+
+class Resume(models.Model):
+	name = models.CharField(max_length=255)
+	text = models.TextField()
+
+	def __unicode__(self):
+		return unicode(self.name)
