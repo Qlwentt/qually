@@ -43,11 +43,18 @@ soup = BeautifulSoup(response)
 skills=soup.findAll("span", attrs={"data-skillkey":True})
 
 # get categories
-categories = soup.findAll(attrs={"data-skills":True})
+categories = soup.findAll(attrs={"data-skill":True})
 
-both = categories + skills
-both = both.findAll(text=True)
 
-print both
+keywords =[]
+for skill in skills:
+	keywords.append(skill.getText())
+for cat in categories:
+	keywords.append(cat.getText())
+
+keywords = set(keywords)
+
+print keywords
+
 
 
