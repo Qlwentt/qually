@@ -1,6 +1,6 @@
 # _*_ coding:utf-8 _*_
 from __future__ import unicode_literals
-
+from collections import defaultdict
 
 import sys  
 import unidecode
@@ -12,6 +12,8 @@ from BeautifulSoup import BeautifulSoup
 import re
 import requests
 import unidecode
+
+from jobs.models import Keyword
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
@@ -43,6 +45,9 @@ class JobAd(object):
 		self.company=properties['company']
 		self.location=properties['location']
 		self.date=properties['date']
+		self.score=0
+		self.matching_words=[]
+		self.exp_req=0
 
 
 
@@ -116,8 +121,10 @@ class JobAd(object):
 		  		  			
 		print exp_reqs
 		if exp_reqs: 
-			return min(exp_reqs)
+			self.exp_req=min(exp_reqs)
+			return exp_reqs
 		else:
+			self.exp_req=False
 			return False
 	
 	def meets_requirement(self, exp_int):
@@ -133,6 +140,42 @@ class JobAd(object):
 			if job_ad.meets_requirement(yrs_exp):
 				qualified.append(job_ad)
 		return qualified
+
+	
+	def score_resume(self, resume):
+		jd_words = tb(self.content).words
+		cv_words = tb(resume).words
+		rezscore = 0
+		print cv_words
+		
+		jd_kws = defaultdict(lambda: 0)
+		cv_kws = defaultdict(lambda: 0)
+		
+		#build dictionaries with keyword being key and
+		#number of times it's occured as value
+		for keyword in Keyword.objects.all():
+			if keyword.name.lower() in [x.lower() for x in cv_words]:
+				cv_kws[keyword.name]+=1
+			if keyword.name in jd_words:
+				jd_kws[keyword.name]+=1
+
+		print cv_kws
+		print jd_kws
+
+		print "this is jd keys: {}".format(jd_kws.keys())
+		for keyword in jd_kws.keys():
+			this_score = cv_kws[keyword]*jd_kws[keyword]
+			
+			# add this keyword to list of matching kywds b/n resume and job desc
+			# if this keyword was in both jd and cv
+			if this_score > 0:
+				self.matching_words.append(keyword)
+
+			rezscore+= this_score
+
+		print "rezscore{}".format(rezscore)
+		return rezscore
+
 
 # # indeed_request_url="http://api.indeed.com/ads/apisearch?publisher=9253729351823762&q=software engineer&l=seattle%2C+wa&sort=&radius=&st=&jt=&start={}&limit=1000&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2&format=json"
 # # APIresponse = requests.get(indeed_request_url).json()['results']

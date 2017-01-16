@@ -11,7 +11,6 @@ from jobs.job_ad import JobAd
 
 from django.conf import settings
 
-
 import sys  
 import re
 
@@ -59,53 +58,5 @@ class QuallyApiWrapper(object):
 		# print "API response: {}".format(APIresponse)
 		return JobAd.make_job_ads_from_api(APIresponse)
 
-	# def get_job_urls_batch(request_url):
- #    response = requests.get(request_url)
- #    json_data=response.json()
- #    job_ad_urls=[]
-   
- #    for i, result in enumerate(json_data["results"]):
- #        # print result
- #        this_url= result["url"]
- #        job_ad_urls.append(this_url)  
- #        # print this_url
- #    return job_ad_urls
-
-	# # gets num_records of job urls 
-	# def get_mult_batches(request_url,num_records):
-	#     start = 0
-	#     batches =[]
-	#     for i in range(((num_records-1)//25)+1):
-	#        request_url=request_url.format(start)
-	#        this_batch=get_job_urls_batch(request_url)
-	#        batches.extend(this_batch)
-	#        start+=25
-	#     return batches
-
-
-
-
-
-
-
-
-
-# job_ads=QuallyApiWrapper.get_job_ads({'search_term': 'software engineer',
-# 						  					'city': 'seattle',
-# 						  					'state': 'WA'})
-# print "job ads: {}".format(job_ads)
-
-
-# indeed_request_url="http://api.indeed.com/ads/apisearch?publisher=9253729351823762&q=software engineer&l=seattle%2C+wa&sort=&radius=&st=&jt=&start={}&limit=1000&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2&format=json"
-# APIresponse = requests.get(indeed_request_url).json()['results']
-# test_job_ads=JobAd.make_job_ads_from_api(APIresponse)
-# print test_job_ads
-# print len(test_job_ads)
-# print type(test_job_ads)
-# print type(test_job_ads[0])
-
-# print dir(test_job_ads[0])
-# print test_job_ads[0].content
-	# print "hello"
 
 

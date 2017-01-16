@@ -7,7 +7,12 @@
 {% for job in jobs %}
 <h2><a href= '{{job.url}}'>{{ job.title }}</a></h2>
 <h4>{{ job.company }}, {{ job.location }}</h4>
-<p>{{ job.snippet|safe }}</p>
+<p>{{ job.snippet|safe }}</p> <!--the safe pip is to keep html formatting-->
+<p>Job score: {{ job.score}}</p>
+   {% for keyword in job.matching_words %}
+        <p>{{keyword}}</p>
+   {% endfor %}
+<p>Experience needed: {{ job.exp_req}}</p>
 {% endfor %}
 <div class="pagination">
     <span class="step-links">

@@ -26,7 +26,8 @@ def index(request):
 
 	user_input={'search_term': data['job_title'],
 				'city': data['city'],
-				'state': data['state']}
+				'state': data['state'],
+				'resume': data['resume']}
 	search_id = json.dumps(user_input, sort_keys=True)
 
 	if search_id in request.session:
@@ -36,16 +37,25 @@ def index(request):
 		for i in range(num_records/25):
 			job_ads.extend(QuallyApiWrapper.get_job_ads(user_input, i*25))
 		
-		#use job_ads content to keywords
+		#use job_ads content to get keywords
 		br = SkillSpider.login_jobscan()
 		for job_ad in job_ads:
 			soup = SkillSpider.perform_jobscan(br, job_ad.content)
 			keywords=SkillSpider.get_keywords(soup)
 			SkillSpider.add_keywords_to_database(keywords)
-			print "Keyword database: {}".format(Keyword.objects.all())
 			time.sleep(4)
+		
+		job_scores = []
+
+		for job_ad in job_ads:
+			job_ad.score = job_ad.score_resume(user_input['resume'])
+
+		print "job_scores: {}".format(job_scores)
+
 		#filter by experience--leaving out those that don't match
 		filtered_jobs=JobAd.filter_by_exp(form['yrs_exp'], job_ads)
+		
+		# filtered_jobs=JobAd.filter_by_score
 		
 		#put this search_id in the session
 		request.session[search_id] = filtered_jobs
