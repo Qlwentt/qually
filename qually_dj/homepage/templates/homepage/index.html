@@ -2,17 +2,19 @@
 
 {% block content %}
 
-<a href="{% url 'jobs:index' %}">Why, Doe</a>
-
-<p>get ready to find a job!</p>
-{% include "homepage/includes/htmlsnippet.html" %}
+<!-- <a href="{% url 'jobs:index' %}">Why, Doe</a> -->
+<main>
+<p>To get curated jobs, fill out this form</p>
+<p>lalalalalalalalalalalalala</p>
+<h1>Enter your information!</h1>
+<!-- {% include "homepage/includes/htmlsnippet.html" %} -->
 <form role 'form' method= 'GET' action= "{% url 'jobs:index' %}" >
 {{ form.as_p }}
 <input type="submit"  value="See My Jobs"></input>
 
 <!-- <button type = 'submit'>See My Jobs</button> -->
 </form>
-
+</main>
 
 
 <!-- <ul class="list-inline intro-social-buttons">

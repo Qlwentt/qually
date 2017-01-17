@@ -8,6 +8,6 @@ class SeeJobsForm(forms.Form):
     state = forms.CharField(required=False)
     yrs_exp = forms.IntegerField(required=True)
     resume = forms.CharField(
-        required=False,
+        required=True,
         widget=forms.Textarea
     )
