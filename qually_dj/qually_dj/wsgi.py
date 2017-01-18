@@ -17,3 +17,6 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "qually_dj.settings")
 
 application = get_wsgi_application()
+
+# add the conda_env site-packages path to the sys.path
+sys.path.append('/Users/quaiwentt/anaconda/envs/qually_env/lib/python2.7/site-packages')
