@@ -14,7 +14,7 @@ import sys
 
 
 # add the hellodjango project path into the sys.path
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 print "sys.path: {}".format(sys.path)
 print "DJango settings mod: {}".format(os.environ.get("DJANGO_SETTINGS_MODULE"))
 
