@@ -7,7 +7,8 @@ import dotenv
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "qually_dj.settings")
-    dotenv.read_dotenv()
+    if sys.argv[1] == 'runserver'
+        dotenv.read_dotenv()
     try:
         from django.core.management import execute_from_command_line
     except ImportError:

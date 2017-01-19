@@ -27,10 +27,11 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "qually_dj.settings")
 
 
 
-import dotenv
 from django.core.wsgi import get_wsgi_application
 
-dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
+if sys.argv[1] == 'runserver'
+	import dotenv
+	dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
 
 
 application = get_wsgi_application()
