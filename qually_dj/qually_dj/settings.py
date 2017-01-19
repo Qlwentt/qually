@@ -52,6 +52,8 @@ if MODE == "development":
         'django.contrib.messages',
         'django.contrib.staticfiles',
     ]
+    ROOT_URLCONF = 'qually_dj.urls'
+
 else:
     INSTALLED_APPS = [
         'qually_dj.homepage',
@@ -64,6 +66,8 @@ else:
         'django.contrib.messages',
         'django.contrib.staticfiles',
     ]
+    ROOT_URLCONF = 'qually_dj.qually_dj.urls'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -74,7 +78,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'qually_dj.urls'
 
 TEMPLATES = [
     {
