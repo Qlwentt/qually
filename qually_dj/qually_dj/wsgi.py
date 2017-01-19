@@ -30,13 +30,13 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "qually_dj.settings")
 
 from django.core.wsgi import get_wsgi_application
 
-if True: 
-    #sys.argv[] == 'runserver'
-    print "helooooooooooooooooooooooooooooooo"
-    print "in dev: {}".format(sys.argv)
-    #dotenv.read_dotenv()
-
-
+try:
+    if sys.argv[1] == 'runserver':
+    	# print "helooooooooooooooooooooooooooooooo"
+    	# print "in dev: {}".format(sys.argv)
+    	dotenv.read_dotenv()
+except IndexError: 
+	print "production mode"
 application = get_wsgi_application()
 
 
