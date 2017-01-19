@@ -4,7 +4,7 @@ Django==1.10.5
 mechanize==0.2.5
 nltk==3.2.2
 psycopg2==2.6
-python-dotenv==0.6.2
+#python-dotenv==0.6.2
 django-dotenv==1.4.1
 requests==2.12.5
 six==1.10.0
