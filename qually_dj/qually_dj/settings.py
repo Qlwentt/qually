@@ -24,7 +24,7 @@ from os.path import join, dirname
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ["MY_SECRET_KEY"]
-PUB_ID = os.environ[PUB_ID]
+PUB_ID = os.environ["PUB_ID"]
 JOB_SCAN_PW = os.environ["JOB_SCAN_PW"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
