@@ -18,8 +18,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 print "sys.path: {}".format(sys.path)
 print "DJango settings mod: {}".format(os.environ.get("DJANGO_SETTINGS_MODULE"))
 
-# add the conda_env site-packages path to the sys.path
-# sys.path.append('/Users/quaiwentt/anaconda/envs/qually_env/lib/python2.7/site-packages')
+import qually_dj.settings
 
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "qually_dj.settings")
