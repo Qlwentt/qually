@@ -34,18 +34,36 @@ ALLOWED_HOSTS = []
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 # Application definition
 
-INSTALLED_APPS = [
-    'qually_dj.homepage',
-    'jobs',
-    # 'user',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-]
+MODE = "development"
+try:
+    sys.argv[1] == 'runserver':
+except IndexError:
+    MODE = "production"
 
+if MODE == "development"
+    INSTALLED_APPS = [
+        'homepage',
+        'jobs',
+        # 'user',
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+    ]
+else:
+    INSTALLED_APPS = [
+        'qually_dj.homepage',
+        'qually_dj.jobs',
+        # 'user',
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+    ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
