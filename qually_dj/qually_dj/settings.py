@@ -40,7 +40,7 @@ try:
 except IndexError:
     MODE = "production"
 
-if MODE == "development"
+if MODE == "development":
     INSTALLED_APPS = [
         'homepage',
         'jobs',
