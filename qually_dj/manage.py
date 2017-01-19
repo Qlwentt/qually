@@ -2,12 +2,12 @@
 import os
 import sys
 
-from dotenv import load_dotenv, find_dotenv
-load_dotenv(find_dotenv())
+import dotenv
 
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "qually_dj.settings")
+    dotenv.read_dotenv()
     try:
         from django.core.management import execute_from_command_line
     except ImportError:
@@ -16,6 +16,8 @@ if __name__ == "__main__":
         # exceptions on Python 2.
         try:
             import django
+            execute_from_command_line(sys.argv)
+
         except ImportError:
             raise ImportError(
                 "Couldn't import Django. Are you sure it's installed and "

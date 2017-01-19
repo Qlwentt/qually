@@ -16,13 +16,6 @@ import time
 import os
 
 
-from os.path import join, dirname
-from dotenv import load_dotenv
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
-JOB_SCAN_PW=os.environ.get('JOB_SCAN_PW')
-JOB_SCAN_EMAIL=os.environ.get('JOB_SCAN_EMAIL')
-
 # from jobs.job_ad import JobAd
 from jobs.models import Resume
 from jobs.models import Keyword
@@ -52,8 +45,8 @@ class SkillSpider(object):
 		#log in
 		br.open('https://www.jobscan.co/login')
 		br.select_form(name='reg')
-		br.form['email']= JOB_SCAN_EMAIL
-		br.form['password']= JOB_SCAN_PW
+		br.form['email']= os.environ["JOB_SCAN_EMAIL"]
+		br.form['password']= os.environ["JOB_SCAN_PW"]
 		br.submit()
 		return br
 

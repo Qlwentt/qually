@@ -1,11 +1,6 @@
 from __future__ import unicode_literals
 import os
 from os.path import join, dirname
-from dotenv import load_dotenv
-
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
-PUB_ID=os.environ.get('PUB_ID')
 
 from jobs.job_ad import JobAd
 
@@ -30,7 +25,7 @@ class QuallyApiWrapper(object):
 	@classmethod
 	def get_job_ads(cls, user_query, start):
 		base_url = "http://api.indeed.com/ads/apisearch?"
-		publisher = "publisher="+ PUB_ID 
+		publisher = "publisher="+ os.environ["PUB_ID"]
 		# print publisher
 		rq_options = "sort=&radius=&st=&jt=&start={}&limit=1000&fromage=&filter=&latlong=1&co=us&chnl=".format(start)
 	
