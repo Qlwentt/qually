@@ -33,7 +33,7 @@ from django.core.wsgi import get_wsgi_application
 if True: 
     #sys.argv[] == 'runserver'
     print "helooooooooooooooooooooooooooooooo"
-    print "in dev: {}".format(sys.argv[1])
+    print "in dev: {}".format(sys.argv)
     #dotenv.read_dotenv()
 
 

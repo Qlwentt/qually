@@ -10,7 +10,7 @@ if __name__ == "__main__":
     if True: 
         #sys.argv[] == 'runserver'
         print "helooooooooooooooooooooooooooooooo"
-        print "in dev: {}".format(sys.argv[1])
+        print "in dev: {}".format(sys.argv)
         #dotenv.read_dotenv()
     try:
         from django.core.management import execute_from_command_line
