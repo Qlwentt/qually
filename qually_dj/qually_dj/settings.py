@@ -35,7 +35,7 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 # Application definition
 
 INSTALLED_APPS = [
-    'homepage',
+    'qually_dj.homepage',
     'jobs',
     # 'user',
     'django.contrib.admin',
