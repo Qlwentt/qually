@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.10/howto/deployment/wsgi/
 
 import os
 import sys
+import dotenv
 # from dotenv import load_dotenv, find_dotenv
 # load_dotenv(find_dotenv())
 
@@ -29,10 +30,11 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "qually_dj.settings")
 
 from django.core.wsgi import get_wsgi_application
 
-if sys.argv[1] == 'runserver':
-	import dotenv
-	print "in dev: {}".format(sys.argv[1])
-	dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
+if True: 
+    #sys.argv[] == 'runserver'
+    print "helooooooooooooooooooooooooooooooo"
+    print "in dev: {}".format(sys.argv[1])
+    #dotenv.read_dotenv()
 
 
 application = get_wsgi_application()
