@@ -36,7 +36,7 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
 MODE = "development"
 try:
-    sys.argv[1] == 'runserver':
+    sys.argv[1] == 'runserver'
 except IndexError:
     MODE = "production"
 
