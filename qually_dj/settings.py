@@ -29,7 +29,7 @@ JOB_SCAN_PW = os.environ["JOB_SCAN_PW"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['qually-dev.us-west-2.elasticbeanstalk.com']
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 # Application definition
