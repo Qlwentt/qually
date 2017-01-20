@@ -1,0 +1,13 @@
+main{
+    position: relative;
+    top: -1%;
+    /*background-color: yellow;*/
+}
+
+.navbar-brand {
+	color: #1b03c7;
+}
+
+.topnav {
+    font-size: 16px;
+}

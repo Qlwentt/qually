@@ -5,15 +5,11 @@ import sys
 import dotenv
 
 
+
+
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "qually_dj.settings")
-    try:
-        if sys.argv[1] == 'runserver':
-            # print "helooooooooooooooooooooooooooooooo"
-            # print "in dev: {}".format(sys.argv)
-            dotenv.read_dotenv()
-    except IndexError:
-        print "production mode"
+    dotenv.read_dotenv()
     
     try:
         from django.core.management import execute_from_command_line

@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
-import os,sys
+import os, sys
 from os.path import join, dirname
 # from dotenv import load_dotenv
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -26,6 +26,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ['MY_SECRET_KEY']
 PUB_ID = os.environ['PUB_ID']
 JOB_SCAN_PW = os.environ['JOB_SCAN_PW']
+JOB_SCAN_EMAIL = os.environ['JOB_SCAN_EMAIL']
+
+# SECRET_KEY = os.environ.get('MY_SECRET_KEY')
+# PUB_ID = os.environ.get('PUB_ID')
+# JOB_SCAN_PW = os.environ.get('JOB_SCAN_PW')
+# JOB_SCAN_EMAIL = os.environ.get('JOB_SCAN_EMAIL')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
