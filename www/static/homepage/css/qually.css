@@ -14,6 +14,5 @@ main{
 
 form p:nth-child(5){
 	background-color: yellow;
-	position: relative;
-	float: right;
+
 }
