@@ -51,7 +51,7 @@ class SkillSpider(object):
 		return br
 
 	@staticmethod
-	def perform_jobscan(br,job_desc):
+	def perform_jobscan(br,resume,job_desc):
 		br.open('https://www.jobscan.co/')
 		br.select_form(name='form')
 		br.form['cv']= Resume.objects.first().text
