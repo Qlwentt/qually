@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-source $BIN_DIR/utils
 
 echo "-----> Starting corpora installation"
 
