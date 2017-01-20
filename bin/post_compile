@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-mkdir ${NLTK_DATA}
+mkdir -p ${NLTK_DATA}
 if [ -f bin/install_textblob_corpora ]; then
     echo "-----> Running install_textblob_corpora"
     chmod +x bin/install_textblob_corpora

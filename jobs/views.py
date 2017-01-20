@@ -16,6 +16,8 @@ import time
 # Create your views here.
 def index(request):
 	form = SeeJobsForm(request.GET)
+	# left_form = SeeJobsFormLeft(request.GET)
+	# right_form = SeeJobsFormRight(request.GET)
 
 	if form.is_valid():
 		data=form.cleaned_data
