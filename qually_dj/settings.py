@@ -36,7 +36,7 @@ JOB_SCAN_EMAIL = os.environ['JOB_SCAN_EMAIL']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['qually-dev.us-west-2.elasticbeanstalk.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['qually-dev.us-west-2.elasticbeanstalk.com', 'localhost', '127.0.0.1', 'www.quallyjobs.com']
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 # Application definition
