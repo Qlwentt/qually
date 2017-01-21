@@ -5,18 +5,18 @@ import sys
 import dotenv
 
 
-
+dotenv.read_dotenv()
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "qually_dj.settings")
     # if you need to run collect staticfiles again, comment out the try block with sys.argv[1]
-    try:
-        if sys.argv[1] == 'runserver':
-            # print "helooooooooooooooooooooooooooooooo"
-            # print "in dev: {}".format(sys.argv)
-            dotenv.read_dotenv()
-    except IndexError:
-        print "production mode"
+    # try:
+    #     if sys.argv[1] == 'runserver':
+    #         # print "helooooooooooooooooooooooooooooooo"
+    #         # print "in dev: {}".format(sys.argv)
+    #         dotenv.read_dotenv()
+    # except IndexError:
+    #     print "production mode"
     
     try:
         from django.core.management import execute_from_command_line

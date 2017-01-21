@@ -14,39 +14,42 @@
 {{ form.non_field_errors }}
 
 <div class="col-md-6">
+	<p>Paste Resume</p>
 	<div class="fieldWrapper">
 	    {{ form.resume.errors }}
-	    <label for="{{ form.resume_for_label }}">Resume:</label>
+	    
 	    {{ form.resume }}
 	</div>
 </div>
 
 <div class="col-md-6">
 	<div class="fieldWrapper">
-	    {{ form.subject.errors }}
-	    <label for="{{ form.subject.id_for_label }}">Job Title:</label>
-	    {{ form.subject }}
+	    {{ form.job_title.errors }}
+	    <label for="{{ form.job_title.id_for_label }}">Job Title:</label>
+	    {{ form.job_title }}
 	</div>
 	<div class="fieldWrapper">
 	    {{ form.city.errors }}
 	    <label for="{{ form.message.id_for_label }}">City:</label>
 	    {{ form.city }}
-	</div>
-	<div class="fieldWrapper">
-	    {{ form.state }}
+	    {{ form.state.errors }}
 	    <label for="{{ form.state_for_label }}">State:</label>
 	    {{ form.state }}
 	</div>
+	<!-- <div class="fieldWrapper">
+	    
+	</div> -->
 	<div class="fieldWrapper">
 	    {{ form.cc_myself.errors }}
 	    <label for="{{ form.yrs_exp_for_label }}">Years of Experience:</label>
 	    {{ form.yrs_exp}}
 	</div>
+	<input type="submit"  value="See My Jobs"></input>
 </div>
 
 
 
-<input type="submit"  value="See My Jobs"></input>
+
 
 <!-- <button type = 'submit'>See My Jobs</button> -->
 </form>
