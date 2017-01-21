@@ -171,9 +171,8 @@ USE_TZ = True
 
 STATIC_URL = '/staticfiles/'
 try:
-    if sys.argv[1] == 'runserver':
-        
-        # STATIC_ROOT = os.path.join(BASE_DIR, "static")
+    is_dev= sys.argv[1] == 'runserver'
+     # STATIC_ROOT = os.path.join(BASE_DIR, "static")
 except IndexError:    
     STATIC_ROOT = os.path.join(BASE_DIR, "www", "static")
     STATICFILES_DIRS = (
