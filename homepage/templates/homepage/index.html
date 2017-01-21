@@ -1,12 +1,9 @@
 {% extends "homepage/header.html" %}
-
+{% load widget_tweaks %}
 {% block content %}
 
 <!-- <a href="{% url 'jobs:index' %}">Why, Doe</a> -->
 <main>
-<p>To get curated jobs, fill out this form</p>
-<p>lalalalalalalalalalalalala</p>
-<h1>Enter your information!</h1>
 <!-- {% include "homepage/includes/htmlsnippet.html" %} -->
 <div class="row">
 
@@ -18,58 +15,43 @@
 	<div class="fieldWrapper">
 	    {{ form.resume.errors }}
 	    
-	    {{ form.resume }}
+	    {% render_field form.resume class="form-control" placeholder="resume text here" %}
 	</div>
 </div>
 
-<div class="col-md-6">
-	<div id= "title-field" class="fieldWrapper row">
+<div class="col-md-6 form-horizontal">
+	<div id= "title-field" class="fieldWrapper form-group">
 	    {{ form.job_title.errors }}
-	    <label id = "title-label" for="{{ form.job_title.id_for_label }}" class = "col-sm-3">Job Title:</label>
-	    <div id= "title-input"class = "col-sm-3 col-sm-offset-4">
-	    {{ form.job_title }}
-		</div>
+	    <label id = "title-label" for="{{ form.job_title.id_for_label }}">Job Title</label>
+	   <!--  <div id= "title-input" class = "form-control" placeholder="softwareengineer"> -->
+	    {% render_field form.job_title class="form-control" placeholder="software engineer" %}
 	</div>
-	<div id= "location" class="fieldWrapper row">
-	    <div class= "col-sm-12 co col-md-12">
-		    <div class = "row">
-		    	<div id="city" class = "col-sm-7">
-				    {{ form.city.errors }}
-				    <label for="{{ form.message.id_for_label }}">City:</label>
-				    {{ form.city }}
-				</div>
-				<div id = "state"class = "col-sm-4 col-sm-offset-1"
-				    {{ form.state.errors }}
-				    <label for="{{ form.state_for_label }}">State:</label>
-				    {{ form.state }}
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- <div class="fieldWrapper">
-	    
-	</div> -->
-	<div class="fieldWrapper row">
-	    {{ form.yrs_exp.errors }}
-	    <label id = "title-label" for="{{ form.yrs_exp_for_label }}" class = "col-sm-3">Years of Experience:</label>
-	    
-	    <div id= "yrs-exp-input"class = "col-sm-3 col-sm-offset-4">
-	    {{ form.yrs_exp}}
-		</div>
+	
+	<div id= "location" class="fieldWrapper form-group">
+	    {{ form.city.errors }}
+	    <label for="{{ form.message.id_for_label }}">City</label>
+	    {% render_field form.city class="form-control" placeholder="Seattle" %}
 
-		
+	    {{ form.state.errors }}
+	    <label for="{{ form.state_for_label }}">State</label>
+	    {% render_field form.state class="form-control" placeholder="WA" %}
+	</div>
+	
+	<div class="fieldWrapper form-group">
+	    {{ form.yrs_exp.errors }}
+	    <label id = "yrs-exp-label" for="{{ form.yrs_exp_for_label }}" class = "col-sm-3">Years of Experience</label>
+	    
+	    <div id= "yrs-exp-input"class >
+	    {% render_field form.yrs_exp class="form-control" placeholder="0" %}
+		</div>
 	</div>
 	<div id = "submit-button" class = "row">
-		<input class="col-sm-6 col-sm-offset-3" type="submit"  value="See My Jobs"></input>
+		<input class="col-sm-6 col-sm-offset-3 btn btn-primary" type="submit"  value="See My Jobs"></input>
 	</div>
 </div>
-
-
-
-
-
-<!-- <button type = 'submit'>See My Jobs</button> -->
 </form>
+
+
 </main>
 
 

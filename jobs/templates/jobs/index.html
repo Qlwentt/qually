@@ -1,19 +1,26 @@
 {% extends "homepage/header.html" %}
 
 {% block content %}
-<h1>Qually</h1>
-<p>This is the  index page for jobs </p>
 
 {% for job in jobs %}
-<h2><a href= '{{job.url}}'>{{ job.title }}</a></h2>
+<h2><a href= '{{job.url}}'>{{ job.title }} {% if job.qually_rec %}⭐{%endif%}</a></h2>
 <h4>{{ job.company }}, {{ job.location }}</h4>
 <p>{{ job.snippet|safe }}</p> <!--the safe pip is to keep html formatting-->
-<p>Job score: {{ job.score}}</p>
-   {% for keyword in job.matching_words %}
-        <p>{{keyword}}</p>
-   {% endfor %}
-<p>Experience needed: {{ job.exp_req}}</p>
+<section id = "job-score-info">
+   <!--  <p>Job score: {{ job.score}}</p> -->
+        <p id = "keyword">Matching Keywords:  </p>
+        {% for keyword in job.matching_words %}
+            <p id = "keyword">    •   {{keyword}}</p>
+        {% endfor %}
+
+        {% if job_exp_req %}
+            <p>Experience needed: {% job.exp_req}} years</p>
+        {%else %}
+             <p>No experience needed</p>
+        {% endif %}
+</section>
 {% endfor %}
+
 <div class="pagination">
     <span class="step-links">
         {% if jobs.has_previous %}

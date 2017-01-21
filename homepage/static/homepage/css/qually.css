@@ -1,22 +1,32 @@
-main{
-    position: relative;
-    top: -1%;
-    /*background-color: yellow;*/
+#buffer{
+	height: 10vmax;
 }
 
 .navbar-default .navbar-brand {
     color: #1b03c7;
-    
 }
 
 #qually-name {
     font-size: 27px;
 }
 
-.fieldWrapper, #submit-button {
+#headline{
+	color: gray;
+	font-size: 13px;
+	margin-top: 2%;
+	margin-left: 10%;
+}
+
+#quallyfied{
+	color: #1b03c7;
+}
+
+
+/*.fieldWrapper, #submit-button {
 	padding: 5%;
 
-}
+}*/
+/* form styling */
 #title-field{
 	padding-top: 0;
 }
@@ -25,18 +35,38 @@ main{
 	width: 100%;
 }
 
-#id_state{
-	width: 60%;
+#id_city{
+	width: 40%;
 }
 
+#id_state{
+	width: 10%;
+}
 
+#state, #yrs-exp-label{
+	padding: 0;
+}
 
+input{
+	margin: 0;
+}
 
+.btn-primary{
+	background-color: #1b03c7;
+	border-color: rgb(9, 2, 56);
+}
 
-@media screen and (max-width: 1000px){
+/**{background-color: blue}
+*/
+
+@media screen and (max-width: 991px){
     .fieldWrapper{
 /*    	background-color: blue;
 */        padding:1%;
         
     }
+}
+
+#keyword{
+	display: inline;
 }

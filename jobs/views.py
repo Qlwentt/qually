@@ -51,9 +51,11 @@ def index(request):
 		job_scores = []
 
 		for job_ad in job_ads:
+			
 			job_ad.score = job_ad.score_resume(user_input['resume'])
-
+			job_ad.set_qually_rec()
 		print "job_scores: {}".format(job_scores)
+
 
 		#filter by experience--leaving out those that don't match
 		filtered_jobs=JobAd.filter_by_exp(form['yrs_exp'], job_ads)
@@ -62,7 +64,8 @@ def index(request):
 		
 		#put this search_id in the session
 		request.session[search_id] = filtered_jobs
-	
+		
+
 	page = request.GET.get('page')
 	paginator = Paginator(filtered_jobs, 10) #show 10 jobs per page
 
