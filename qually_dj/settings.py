@@ -174,7 +174,8 @@ try:
     is_dev= sys.argv[1] == 'runserver'
      # STATIC_ROOT = os.path.join(BASE_DIR, "static")
 except IndexError:    
-    STATIC_ROOT = os.path.join(BASE_DIR, "www", "static")
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, "static"),
     )
+# STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
