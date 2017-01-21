@@ -5,7 +5,9 @@ import sys
 import dotenv
 
 
-# dotenv.read_dotenv()
+dotenv.read_dotenv() #take this line out for production
+
+print "sys args: {}".format(sys.argv)
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "qually_dj.settings")

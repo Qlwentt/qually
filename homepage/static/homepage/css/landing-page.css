@@ -163,6 +163,7 @@ h6 {
 footer {
     padding: 50px 0;
     background-color: #f8f8f8;
+    border: 3px solid purple;
 /*    background-color: yellow;
 */}
 
@@ -175,8 +176,12 @@ p.copyright {
 
 /* my additions*/
 /* Qually Logo Nav Bar*/
-.navbar-default .navbar-brand {
+/*.navbar-default .navbar-brand {
     color: #1b03c7;
     
 }
+
+.topnav {
+    font-size: 27px;
+}*/
 

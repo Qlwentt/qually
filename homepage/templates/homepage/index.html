@@ -23,28 +23,45 @@
 </div>
 
 <div class="col-md-6">
-	<div class="fieldWrapper">
+	<div id= "title-field" class="fieldWrapper row">
 	    {{ form.job_title.errors }}
-	    <label for="{{ form.job_title.id_for_label }}">Job Title:</label>
+	    <label id = "title-label" for="{{ form.job_title.id_for_label }}" class = "col-sm-3">Job Title:</label>
+	    <div id= "title-input"class = "col-sm-3 col-sm-offset-4">
 	    {{ form.job_title }}
+		</div>
 	</div>
-	<div class="fieldWrapper">
-	    {{ form.city.errors }}
-	    <label for="{{ form.message.id_for_label }}">City:</label>
-	    {{ form.city }}
-	    {{ form.state.errors }}
-	    <label for="{{ form.state_for_label }}">State:</label>
-	    {{ form.state }}
+	<div id= "location" class="fieldWrapper row">
+	    <div class= "col-sm-12 co col-md-12">
+		    <div class = "row">
+		    	<div id="city" class = "col-sm-7">
+				    {{ form.city.errors }}
+				    <label for="{{ form.message.id_for_label }}">City:</label>
+				    {{ form.city }}
+				</div>
+				<div id = "state"class = "col-sm-4 col-sm-offset-1"
+				    {{ form.state.errors }}
+				    <label for="{{ form.state_for_label }}">State:</label>
+				    {{ form.state }}
+				</div>
+			</div>
+		</div>
 	</div>
 	<!-- <div class="fieldWrapper">
 	    
 	</div> -->
-	<div class="fieldWrapper">
-	    {{ form.cc_myself.errors }}
-	    <label for="{{ form.yrs_exp_for_label }}">Years of Experience:</label>
+	<div class="fieldWrapper row">
+	    {{ form.yrs_exp.errors }}
+	    <label id = "title-label" for="{{ form.yrs_exp_for_label }}" class = "col-sm-3">Years of Experience:</label>
+	    
+	    <div id= "yrs-exp-input"class = "col-sm-3 col-sm-offset-4">
 	    {{ form.yrs_exp}}
+		</div>
+
+		
 	</div>
-	<input type="submit"  value="See My Jobs"></input>
+	<div id = "submit-button" class = "row">
+		<input class="col-sm-6 col-sm-offset-3" type="submit"  value="See My Jobs"></input>
+	</div>
 </div>
 
 
