@@ -8,8 +8,44 @@
 <p>lalalalalalalalalalalalala</p>
 <h1>Enter your information!</h1>
 <!-- {% include "homepage/includes/htmlsnippet.html" %} -->
+<div class="row">
+
 <form role 'form' method= 'GET' action= "{% url 'jobs:index' %}" >
-{{ form.as_p }}
+{{ form.non_field_errors }}
+
+<div class="col-md-6">
+	<div class="fieldWrapper">
+	    {{ form.resume.errors }}
+	    <label for="{{ form.resume_for_label }}">Resume:</label>
+	    {{ form.resume }}
+	</div>
+</div>
+
+<div class="col-md-6">
+	<div class="fieldWrapper">
+	    {{ form.subject.errors }}
+	    <label for="{{ form.subject.id_for_label }}">Job Title:</label>
+	    {{ form.subject }}
+	</div>
+	<div class="fieldWrapper">
+	    {{ form.city.errors }}
+	    <label for="{{ form.message.id_for_label }}">City:</label>
+	    {{ form.city }}
+	</div>
+	<div class="fieldWrapper">
+	    {{ form.state }}
+	    <label for="{{ form.state_for_label }}">State:</label>
+	    {{ form.state }}
+	</div>
+	<div class="fieldWrapper">
+	    {{ form.cc_myself.errors }}
+	    <label for="{{ form.yrs_exp_for_label }}">Years of Experience:</label>
+	    {{ form.yrs_exp}}
+	</div>
+</div>
+
+
+
 <input type="submit"  value="See My Jobs"></input>
 
 <!-- <button type = 'submit'>See My Jobs</button> -->
