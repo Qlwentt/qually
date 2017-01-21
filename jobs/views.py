@@ -24,7 +24,7 @@ def index(request):
 	#have case for if the form is not valid
 	
 	
-	num_records = 25
+	num_records = 1000
 
 	user_input={'search_term': data['job_title'],
 				'city': data['city'],
