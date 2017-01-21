@@ -5,7 +5,7 @@ import sys
 import dotenv
 
 
-dotenv.read_dotenv() #take this line out for production
+# dotenv.read_dotenv() #take this line out for production
 
 print "sys args: {}".format(sys.argv)
 
