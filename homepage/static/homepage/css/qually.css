@@ -5,7 +5,10 @@
 .navbar-default .navbar-brand {
     color: #1b03c7;
 }
-
+.navbar-header{
+	display: inline;
+	width: 50%
+}
 #qually-name {
     font-size: 27px;
 }
