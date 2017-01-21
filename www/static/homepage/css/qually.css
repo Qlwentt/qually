@@ -9,6 +9,35 @@ main{
     
 }
 
-.topnav {
+#qually-name {
     font-size: 27px;
+}
+
+.fieldWrapper, #submit-button {
+	padding: 5%;
+
+}
+#title-field{
+	padding-top: 0;
+}
+
+#id_resume{
+	width: 100%;
+}
+
+#id_state{
+	width: 60%;
+}
+
+*{ background-color: blue}
+
+
+
+
+@media screen and (max-width: 1000px){
+    .fieldWrapper{
+/*    	background-color: blue;
+*/        padding:1%;
+        
+    }
 }
