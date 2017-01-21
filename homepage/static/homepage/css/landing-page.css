@@ -170,7 +170,13 @@ p.copyright {
     margin: 15px 0 0;
 }
 
-
-
+/** {background-color: blue;}
+*/
 
 /* my additions*/
+/* Qually Logo Nav Bar*/
+.navbar-default .navbar-brand {
+    color: #1b03c7;
+    
+}
+
