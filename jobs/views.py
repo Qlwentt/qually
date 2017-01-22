@@ -54,6 +54,7 @@ def index(request):
 			
 			job_ad.score = job_ad.score_resume(user_input['resume'])
 			job_ad.set_qually_rec()
+			print job_ad.qually_rec
 		print "job_scores: {}".format(job_scores)
 
 

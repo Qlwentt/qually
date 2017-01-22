@@ -1,5 +1,5 @@
 #buffer{
-	height: 10vmax;
+	height: 12vmax;
 }
 
 .navbar-default .navbar-brand {
@@ -20,7 +20,7 @@
 	margin-left: 10%;
 }
 
-#quallyfied{
+#quallyfied, a{
 	color: #1b03c7;
 }
 
@@ -70,6 +70,11 @@ input{
     }
 }
 
-#keyword{
+.keyword{
 	display: inline;
+}
+
+.snippet{
+/*	font-family: 'Open Sans', serif;
+*/
 }

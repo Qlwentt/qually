@@ -3,14 +3,14 @@
 {% block content %}
 
 {% for job in jobs %}
-<h2><a href= '{{job.url}}'>{{ job.title }} {% if job.qually_rec %}⭐{%endif%}</a></h2>
+<h2><a href= '{{job.url}}'class = "job-title">{{ job.title }} {% if job.qually_rec %}⭐{%endif%}</a></h2>
 <h4>{{ job.company }}, {{ job.location }}</h4>
-<p>{{ job.snippet|safe }}</p> <!--the safe pip is to keep html formatting-->
-<section id = "job-score-info">
+<p class = "snippet">{{ job.snippet|safe }}</p> <!--the safe pip is to keep html formatting-->
+<section class = "job-score-info">
    <!--  <p>Job score: {{ job.score}}</p> -->
-        <p id = "keyword">Matching Keywords:  </p>
+        <p class = "keyword">Matching Keywords:  </p>
         {% for keyword in job.matching_words %}
-            <p id = "keyword">    •   {{keyword}}</p>
+            <p class = "keyword">    •   {{keyword}}</p>
         {% endfor %}
 
         {% if job_exp_req %}
