@@ -1,0 +1,23 @@
+
+{% extends 'homepage/header.html' %}
+
+{% block content %}
+<section id="update-profile">
+  <h2>Update Profile</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+</section>
+<section id = "saved_jobs">
+	<h2>My saved jobs</h2>
+	<ul>
+		{% for job in saved_jobs %}
+		<li> <a href= '{{job.url}}'class = "job-title">{{ job.title }}</a></li>
+    {% endfor %}
+	</ul>
+</section>
+
+{% endblock content %}

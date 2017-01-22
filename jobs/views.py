@@ -1,17 +1,75 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import TemplateView, FormView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+
+
+
 
 from job_ad import JobAd
-from jobs.models import Keyword
+from jobs.models import Keyword, User, Profile
 from qually_dj.api_wrapper import QuallyApiWrapper
 from qually_dj.skill_spider import SkillSpider
+from jobs.forms import UserForm, ProfileForm, SignUpForm
 
 from jobs.forms import SeeJobsForm
 import json
 import time
 
+class SignUpView(FormView):
+    template_name = 'registration/signup.html'
 
+    def get(self, request):
+        signup_form = SignUpForm()
+        return render(request, self.template_name, {'signup_form': signup_form})
+
+    def post(self, request):
+        signup_form = SignUpForm(request.POST)
+        if signup_form.is_valid():
+            signup_form.save()
+            messages.success(request, ('Your account was successfully created!'))
+            new_user = authenticate(username=signup_form.cleaned_data['username'], password=signup_form.cleaned_data['password1'],)
+            login(request, new_user)
+            return redirect('/profile/edit')
+        else:
+            messages.error(request, ('There is something not quite right...'))
+            return render(request, self.template_name, {'signup_form': signup_form})
+
+# class ProfileView(LoginRequiredMixin, TemplateView):
+#     template_name = 'profiles/profile.html'
+#     def get(self, request, pk):
+#         profile = get_object_or_404(Profile, pk=pk)
+
+
+class UpdateProfileView(LoginRequiredMixin, FormView):
+    template_name = 'profiles/update_profile.html'
+
+    def get(self, request):
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+        print request.user
+        return render(request, self.template_name, {
+            'user_form': user_form,
+            'profile_form': profile_form
+            # 'saved_jobs': request.user.jobs.all()
+        })
+
+    def post(self, request):
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, ('Your profile was successfully updated!'))
+            return redirect('/')
+        else:
+            messages.error(request, ('There is something not quite right...'))
+            return render(request, self.template_name, {
+                'user_form': user_form,
+                'profile_form': profile_form
+            })
 
 # Create your views here.
 def index(request):

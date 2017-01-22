@@ -1,0 +1,15 @@
+
+{% extends "homepage/header.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="registration-form">
+  <h2>Sign Up</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ signup_form.as_p  }}
+      <button type="submit">Sign Up</button>
+    </form>
+</div>
+{% endblock %}

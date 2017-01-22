@@ -17,9 +17,17 @@ Including another URLconf
 # the rails equivalent of this file is routes.rb
 from django.conf.urls import url, include 
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from jobs import views
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='login'),
+    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
+    url(r'^signup/$', views.SignUpView.as_view(), name='signup'),
+    url(r'^profile/edit/$', views.UpdateProfileView.as_view(), name='update_profile'),
+    # url(r'^profile/(?P<pk>\d+)/$', views.ProfileView.as_view(), name='profile'),
     url(r'^', include('homepage.urls', namespace='homepage')),
     url(r'^jobs/', include('jobs.urls', namespace='jobs')),
 ]
