@@ -71,7 +71,7 @@ input{
     }
 }
 
-.job-title:hover{
+.job-title:hover, .navbar-default .navbar-brand:hover{
 	color: orange;
 }
 
@@ -80,10 +80,7 @@ input{
 }
 
 .keyword{
-	
-/*	font-weight: bold;
-*/	color: orange;
-
+	color: orange;
 }
 
 
