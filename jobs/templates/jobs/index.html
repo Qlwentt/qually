@@ -1,16 +1,19 @@
 {% extends "homepage/header.html" %}
 
 {% block content %}
+{% load staticfiles %}
 
 {% for job in jobs %}
+<script src="{% static 'app.js' %}"></script>   
+
 <h2><a href= '{{job.url}}'class = "job-title">{{ job.title }} {% if job.qually_rec %}⭐{%endif%}</a></h2>
 <h4>{{ job.company }}, {{ job.location }}</h4>
 <p class = "snippet">{{ job.snippet|safe }}</p> <!--the safe pip is to keep html formatting-->
 <section class = "job-score-info">
    <!--  <p>Job score: {{ job.score}}</p> -->
-        <p class = "keyword">Matching Keywords:  </p>
+        <p class = "match-keyword">Matching Keywords:  </p>
         {% for keyword in job.matching_words %}
-            <p class = "keyword">    •   {{keyword}}</p>
+            <p class = "keyword"> {{keyword}}</p>
         {% endfor %}
 
         {% if job_exp_req %}
