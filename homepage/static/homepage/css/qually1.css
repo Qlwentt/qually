@@ -1,5 +1,6 @@
 #buffer{
-	height: 12vmax;
+	height: 15vh;
+	
 }
 
 .navbar-default .navbar-brand {
@@ -70,9 +71,21 @@ input{
     }
 }
 
-.keyword{
+.job-title:hover{
+	color: orange;
+}
+
+.match-keyword, .keyword{
 	display: inline;
 }
+
+.keyword{
+	
+/*	font-weight: bold;
+*/	color: orange;
+
+}
+
 
 .snippet{
 /*	font-family: 'Open Sans', serif;

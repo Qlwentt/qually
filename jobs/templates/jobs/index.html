@@ -1,10 +1,10 @@
 {% extends "homepage/header.html" %}
 
 {% block content %}
-{% load staticfiles %}
+
 
 {% for job in jobs %}
-<script src="{% static 'app.js' %}"></script>   
+  
 
 <h2><a href= '{{job.url}}'class = "job-title">{{ job.title }} {% if job.qually_rec %}⭐{%endif%}</a></h2>
 <h4>{{ job.company }}, {{ job.location }}</h4>
