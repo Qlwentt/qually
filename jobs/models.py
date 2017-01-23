@@ -32,7 +32,14 @@ class Resume(models.Model):
 	def __unicode__(self):
 		return unicode(self.name)
 
-
+class CachedJob(models.Model):
+	title = models.CharField(max_length=255)
+	url = models.TextField()
+	snippet = models.TextField()
+	key = models.CharField(max_length=255)
+	date = models.DateTimeField()
+	company = models.CharField(max_length=255)
+	location = models.CharField(max_length=255)
 
 # Create your models here.
 class Profile(models.Model):
