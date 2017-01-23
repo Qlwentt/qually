@@ -16,7 +16,7 @@
    	 <link rel="stylesheet" href="{% static 'homepage/css/bootstrap.min.css' %}" type = "text/css"/>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'homepage/css/landing-page.css' %}" type = "text/css"/>
-    <link rel="stylesheet" href="{% static 'homepage/css/qually.css' %}" type = "text/css"/>
+    <link rel="stylesheet" href="{% static 'homepage/css/qually1.css' %}" type = "text/css"/>
     
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
@@ -44,11 +44,14 @@
                 </button> -->
                 <a id= "qually-name"class="navbar-brand topnav" href="{% url 'homepage:index' %}">Qually</a>
                 <p id = "headline"> find jobs you're <span id= 'quallyfied'>quallyfied </span>for </p>
+
             </div>
-             
+            
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
+                 {% if request.user.is_authenticated %}
+                <p> Welcome {{request.user.username}}!</p>
+                {% endif %}
                 <ul class="nav navbar-nav navbar-right">
                     
                     {% if request.user.is_authenticated %}

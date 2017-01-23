@@ -59,6 +59,10 @@ input{
 	background-color: #1b03c7;
 	border-color: rgb(9, 2, 56);
 }
+.btn-primary:hover{
+	background-color: #ef9a00;
+	border-color: #d49104;
+}
 
 /**{background-color: blue}
 */
