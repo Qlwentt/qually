@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect, get_object_or_404
+from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import TemplateView, FormView
@@ -6,8 +7,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.core import serializers
 from django.contrib.auth.models import User
-
-
 
 
 from job_ad import JobAd
@@ -39,7 +38,7 @@ class SignUpView(FormView):
             messages.success(request, ('Your account was successfully created!'))
             new_user = authenticate(username=signup_form.cleaned_data['username'], password=signup_form.cleaned_data['password1'],)
             login(request, new_user)
-            return redirect('/profile/edit')
+            return redirect('/')
         else:
             messages.error(request, ('There is something not quite right...'))
             return render(request, self.template_name, {'signup_form': signup_form})

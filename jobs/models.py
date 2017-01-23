@@ -55,9 +55,6 @@ class Profile(models.Model):
     city = models.CharField(max_length=255, blank=True)
     state = models.CharField(max_length=100, blank=True)
     resume = models.TextField(blank=True)
-    
-
-    
 
     def __unicode__(self):
         return self.user.username

@@ -19,14 +19,14 @@
     <link rel="stylesheet" href="{% static 'homepage/css/qually.css' %}" type = "text/css"/>
     
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
 	
 	<!-- includes jQuery-->
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="{% static 'js/app.js' %}"></script> 
 
-
+    <!-- favicon -->
+    <link rel=icon href="{% static 'q_favicon.png' %}">
 </head>
 
 <body class="body" style="background-color:#f6f6f6">
@@ -50,8 +50,12 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                  {% if request.user.is_authenticated %}
-                <p> Welcome {{request.user.username}} !</p>
+                <p> Welcome {{request.user.username }} !</p>
                 {% endif %}
+           
+                <a href="{% url 'update_profile' %}"> Create your profile</a>
+           
+
                 <ul class="nav navbar-nav navbar-right">
                     
                     {% if request.user.is_authenticated %}

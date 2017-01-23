@@ -25,6 +25,10 @@
 	color: #1b03c7;
 }
 
+a:hover{
+	color: #FF6600;
+	text-decoration: none;
+}
 
 /*.fieldWrapper, #submit-button {
 	padding: 5%;
@@ -33,6 +37,10 @@
 /* form styling */
 #title-field{
 	padding-top: 0;
+}
+
+#other-fields:hover{
+	color:#1b03c7;
 }
 
 #id_resume{
@@ -60,7 +68,7 @@ input{
 	border-color: rgb(9, 2, 56);
 }
 .btn-primary:hover{
-	background-color: #ef9a00;
+	background-color: #FF6600;
 	border-color: #d49104;
 }
 
