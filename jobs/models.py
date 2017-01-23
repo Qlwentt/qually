@@ -37,15 +37,15 @@ class Resume(models.Model):
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    jobs = models.ManyToManyField(SavedJob, blank=True)
+    jobs = models.ManyToManyField(SavedJob, null=True, blank=True)
 
     # last_name = models.CharField(max_length=100)
     # first_name = models.CharField(max_length=100)
-    yrs_exp = models.IntegerField()
-    job_title = models.CharField(max_length=100)
-    city = models.CharField(max_length=255)
-    state = models.CharField(max_length=100)
-    resume = models.TextField()
+    yrs_exp = models.IntegerField(null=True, blank=True)
+    job_title = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=255, blank = True)
+    state = models.CharField(max_length=100, blank=True)
+    resume = models.TextField(blank=True)
     
 
     
