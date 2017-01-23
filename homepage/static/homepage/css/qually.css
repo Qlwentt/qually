@@ -1,0 +1,94 @@
+#buffer{
+	height: 15vh;
+	
+}
+
+.navbar-default .navbar-brand {
+    color: #1b03c7;
+}
+.navbar-header{
+	display: inline;
+	width: 50%
+}
+#qually-name {
+    font-size: 27px;
+}
+
+#headline{
+	color: gray;
+	font-size: 13px;
+	margin-top: 2%;
+	margin-left: 10%;
+}
+
+#quallyfied, a{
+	color: #1b03c7;
+}
+
+
+/*.fieldWrapper, #submit-button {
+	padding: 5%;
+
+}*/
+/* form styling */
+#title-field{
+	padding-top: 0;
+}
+
+#id_resume{
+	width: 100%;
+}
+
+#id_city{
+	width: 40%;
+}
+
+#id_state{
+	width: 10%;
+}
+
+#state, #yrs-exp-label{
+	padding: 0;
+}
+
+input{
+	margin: 0;
+}
+
+.btn-primary{
+	background-color: #1b03c7;
+	border-color: rgb(9, 2, 56);
+}
+.btn-primary:hover{
+	background-color: #ef9a00;
+	border-color: #d49104;
+}
+
+/**{background-color: blue}
+*/
+
+@media screen and (max-width: 991px){
+    .fieldWrapper{
+/*    	background-color: blue;
+*/        padding:1%;
+        
+    }
+}
+
+.job-title:hover, .navbar-default .navbar-brand:hover{
+	color: orange;
+}
+
+.match-keyword, .keyword{
+	display: inline;
+}
+
+.keyword{
+	color: orange;
+}
+
+
+.snippet{
+/*	font-family: 'Open Sans', serif;
+*/
+}
