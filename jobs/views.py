@@ -19,11 +19,14 @@ from jobs.forms import SeeJobsForm
 import json
 import time
 
+# special views
 def get_resume_json(request):
     resume_json = json.dumps(request.user.profile.resume)
     print "resume json"
     return HttpResponse(resume_json, content_type='application/json')
 
+
+# user views
 class SignUpView(FormView):
     template_name = 'registration/signup.html'
 
@@ -71,13 +74,12 @@ class UpdateProfileView(LoginRequiredMixin, FormView):
                 'user_form': user_form,
                 'profile_form': profile_form
             })
+# end user views
 
-# Create your views here.
+
+# JobAd views 
 def index(request):
 	form = SeeJobsForm(request.GET)
-	# left_form = SeeJobsFormLeft(request.GET)
-	# right_form = SeeJobsFormRight(request.GET)
-
 	if form.is_valid():
 		data=form.cleaned_data
 	#have case for if the form is not valid
@@ -91,8 +93,9 @@ def index(request):
 				'resume': data['resume']}
 	search_id = json.dumps(user_input, sort_keys=True)
 
-	if search_id in request.session:
-		filtered_jobs = request.session.get(search_id)
+	if False :#search_id in request.session:
+		# filtered_jobs = request.session.get(search_id)
+		print "hello"
 	else:
 		job_ads=[]
 		for i in range(num_records/25):
@@ -127,11 +130,11 @@ def index(request):
 
 		#filter by experience--leaving out those that don't match
 		filtered_jobs=JobAd.filter_by_exp(form['yrs_exp'], job_ads)
-		
+		filtered_jobs= JobAd.order_by_score(filtered_jobs)
 		# filtered_jobs=JobAd.filter_by_score
 		
 		#put this search_id in the session
-		request.session[search_id] = filtered_jobs
+		# request.session[search_id] = filtered_jobs
 		
 
 	page = request.GET.get('page')
@@ -147,7 +150,6 @@ def index(request):
  		filtered_jobs = paginator.page(paginator.num_pages)
 
 	return render(request, 'jobs/index.html', {'jobs': filtered_jobs})
-
 
 def show(request):
 	return render(request, 'jobs/show.html')

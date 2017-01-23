@@ -1,8 +1,10 @@
+/* keeps top of the page from getting swallowed up */
 #buffer{
 	height: 15vh;
-	
 }
 
+
+/* nav bar */
 .navbar-default .navbar-brand {
     color: #1b03c7;
 }
@@ -24,6 +26,8 @@
 #quallyfied, a{
 	color: #1b03c7;
 }
+/* end nav bar*/
+
 
 a:hover{
 	color: #FF6600;
@@ -72,9 +76,6 @@ input{
 	border-color: #d49104;
 }
 
-/**{background-color: blue}
-*/
-
 @media screen and (max-width: 991px){
     .fieldWrapper{
 /*    	background-color: blue;
@@ -82,9 +83,11 @@ input{
         
     }
 }
+/* end form styling */
+
 
 .job-title:hover, .navbar-default .navbar-brand:hover{
-	color: orange;
+	color: #FF6600;
 }
 
 .match-keyword, .keyword{
@@ -92,7 +95,7 @@ input{
 }
 
 .keyword{
-	color: orange;
+	color: #FF6600;
 }
 
 

@@ -139,6 +139,9 @@ class JobAd(object):
 		else:
 			return False
 
+	# def get_score(self):
+	# 	return self.score
+
 	@classmethod
 	def filter_by_exp(cls, yrs_exp, job_ads):
 		qualified = []
@@ -147,7 +150,11 @@ class JobAd(object):
 				qualified.append(job_ad)
 		return qualified
 
-	
+
+	@classmethod
+	def order_by_score(cls, job_ads):
+		return sorted(job_ads, key=lambda x: x.score, reverse=True)
+
 	def score_resume(self, resume):
 		jd_words = tb(self.content).words
 		cv_words = tb(resume).words
