@@ -15,6 +15,7 @@ class SavedJob(models.Model):
 	date = models.DateTimeField()
 	company = models.CharField(max_length=255)
 	location = models.CharField(max_length=255)
+	num_keywords = models.IntegerField(default=0)
 
 	def __unicode__(self):
 		return unicode(self.title)
@@ -33,18 +34,19 @@ class Resume(models.Model):
 		return unicode(self.name)
 
 class CachedJob(models.Model):
+	key = models.CharField(max_length=255)
 	title = models.CharField(max_length=255)
 	url = models.TextField()
 	snippet = models.TextField()
-	key = models.CharField(max_length=255)
-	date = models.DateTimeField()
-	company = models.CharField(max_length=255)
-	location = models.CharField(max_length=255)
+	content = models.TextField()
+	
+	def __unicode__(self):
+		return unicode(self.title)
 
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    jobs = models.ManyToManyField(SavedJob, null=True, blank=True)
+    jobs = models.ManyToManyField(SavedJob, blank=True)
 
     # last_name = models.CharField(max_length=100)
     # first_name = models.CharField(max_length=100)

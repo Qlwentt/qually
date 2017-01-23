@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 
 
 from job_ad import JobAd
-from jobs.models import Keyword, User, Profile
+from jobs.models import Keyword, User, Profile, CachedJob
 from qually_dj.api_wrapper import QuallyApiWrapper
 from qually_dj.skill_spider import SkillSpider
 from jobs.forms import UserForm, ProfileForm, SignUpForm
@@ -54,8 +54,8 @@ class UpdateProfileView(LoginRequiredMixin, FormView):
         print request.user
         return render(request, self.template_name, {
             'user_form': user_form,
-            'profile_form': profile_form
-            # 'saved_jobs': request.user.jobs.all()
+            'profile_form': profile_form,
+            'saved_jobs': request.user.profile.jobs.all()
         })
 
     def post(self, request):
@@ -101,17 +101,25 @@ def index(request):
 		
 		#use job_ads content to get keywords
 		
-		br = SkillSpider.login_jobscan()
-		for job_ad in job_ads:
-			soup = SkillSpider.perform_jobscan(br, job_ad.content)
-			keywords=SkillSpider.get_keywords(soup)
-			SkillSpider.add_keywords_to_database(keywords)
-			time.sleep(4)
+		# br = SkillSpider.login_jobscan()
+		# for job_ad in job_ads:
+		# 	soup = SkillSpider.perform_jobscan(br, job_ad.content)
+		# 	keywords=SkillSpider.get_keywords(soup)
+		# 	SkillSpider.add_keywords_to_database(keywords)
+		# 	time.sleep(4)
 		
 		job_scores = []
 
 		for job_ad in job_ads:
-			
+			#cache job if not already cached
+			try:
+				cj=CachedJob.objects.get(key=job_ad.key)
+				
+			except CachedJob.DoesNotExist:  
+				CachedJob.objects.create(key=job_ad.key, title=job_ad.title, url=job_ad.url,
+										snippet= job_ad.snippet, content=job_ad.content)
+
+			#score resume and associate score with jobAd
 			job_ad.score = job_ad.score_resume(user_input['resume'])
 			job_ad.set_qually_rec()
 			print job_ad.qually_rec
