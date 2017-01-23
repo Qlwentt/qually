@@ -13,7 +13,8 @@ import re
 import requests
 import unidecode
 
-from jobs.models import Keyword
+from jobs.models import Keyword, CachedJob
+
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
@@ -75,7 +76,11 @@ class JobAd(object):
 				'date': result['date']
 				})) 
 		for job_ad in job_ads:
-			job_ad.content=job_ad.set_content()
+			try:
+				cj=CachedJob.objects.get(key=job_ad.key)
+				job_ad.content = cj.content
+			except CachedJob.DoesNotExist:  
+				job_ad.content=job_ad.set_content()
 
 		return job_ads
 	

@@ -15,6 +15,7 @@ class SavedJob(models.Model):
 	date = models.DateTimeField()
 	company = models.CharField(max_length=255)
 	location = models.CharField(max_length=255)
+	num_keywords = models.IntegerField(default=0)
 
 	def __unicode__(self):
 		return unicode(self.title)
@@ -32,7 +33,15 @@ class Resume(models.Model):
 	def __unicode__(self):
 		return unicode(self.name)
 
-
+class CachedJob(models.Model):
+	key = models.CharField(max_length=255)
+	title = models.CharField(max_length=255)
+	url = models.TextField()
+	snippet = models.TextField()
+	content = models.TextField()
+	
+	def __unicode__(self):
+		return unicode(self.title)
 
 # Create your models here.
 class Profile(models.Model):
