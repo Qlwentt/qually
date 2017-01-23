@@ -41,11 +41,11 @@ class Profile(models.Model):
 
     # last_name = models.CharField(max_length=100)
     # first_name = models.CharField(max_length=100)
-    yrs_exp = models.IntegerField()
-    job_title = models.CharField(max_length=100)
-    city = models.CharField(max_length=255)
-    state = models.CharField(max_length=100)
-    resume = models.TextField()
+    yrs_exp = models.IntegerField(blank=True)
+    job_title = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=255, blank=True)
+    state = models.CharField(max_length=100, blank=True)
+    resume = models.TextField(blank=True)
     
 
     
