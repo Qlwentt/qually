@@ -46,7 +46,7 @@ class Profile(models.Model):
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=100)
     resume = models.TextField()
-
+    
 
     
 

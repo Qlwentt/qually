@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^signup/$', views.SignUpView.as_view(), name='signup'),
     url(r'^profile/edit/$', views.UpdateProfileView.as_view(), name='update_profile'),
-    # url(r'^profile/(?P<pk>\d+)/$', views.ProfileView.as_view(), name='profile'),
     url(r'^', include('homepage.urls', namespace='homepage')),
     url(r'^jobs/', include('jobs.urls', namespace='jobs')),
+    url(r'^get_resume_json/$',views.get_resume_json, name='get_resume'),
 ]

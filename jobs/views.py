@@ -4,6 +4,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import TemplateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.core import serializers
+from django.contrib.auth.models import User
 
 
 
@@ -17,6 +19,11 @@ from jobs.forms import UserForm, ProfileForm, SignUpForm
 from jobs.forms import SeeJobsForm
 import json
 import time
+
+def get_resume_json(request):
+    resume_json = json.dumps(request.user.profile.resume)
+    print "resume json"
+    return HttpResponse(resume_json, content_type='application/json')
 
 class SignUpView(FormView):
     template_name = 'registration/signup.html'
@@ -36,11 +43,6 @@ class SignUpView(FormView):
         else:
             messages.error(request, ('There is something not quite right...'))
             return render(request, self.template_name, {'signup_form': signup_form})
-
-# class ProfileView(LoginRequiredMixin, TemplateView):
-#     template_name = 'profiles/profile.html'
-#     def get(self, request, pk):
-#         profile = get_object_or_404(Profile, pk=pk)
 
 
 class UpdateProfileView(LoginRequiredMixin, FormView):
