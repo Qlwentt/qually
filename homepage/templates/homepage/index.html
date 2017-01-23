@@ -11,7 +11,7 @@
 {{ form.non_field_errors }}
 
 <div class="col-md-6">
-	<p>Paste Resume <span id= "resume-choice">-or-<a id='use-saved'>Use Saved Resume<a/><span></p>
+	<p>Paste Resume {% if request.user.is_authenticated %} <span id= "resume-choice">-or-<a id='use-saved'>Use Saved Resume<a/><span></p>{% endif %}
 	<div class="fieldWrapper">
 	    {{ form.resume.errors }}
 	    
