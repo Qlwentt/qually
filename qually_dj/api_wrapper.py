@@ -18,9 +18,7 @@ import unidecode
 reload(sys)  
 sys.setdefaultencoding('utf8')
 
-class QuallyApiWrapper(object):
-	
-	
+class QuallyApiWrapper(object):   
 	
 	@classmethod
 	def get_job_ads(cls, user_query, start):
@@ -30,7 +28,7 @@ class QuallyApiWrapper(object):
 		rq_options = "sort=&radius=&st=&jt=&start={}&limit=1000&fromage=&filter=&latlong=1&co=us&chnl=".format(start)
 	
 		#need to ask someone to help me/figure out get real user ip address and agent
-		user_info="userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29"
+		user_info="userip={}&useragent={}".format(user_query['ip'],user_query['user_agent'])
 		format_v= "v=2&format=json"
 
 		#search_term and city, state need to be dynamically inserted

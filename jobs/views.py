@@ -25,6 +25,14 @@ def get_resume_json(request):
     print "resume json"
     return HttpResponse(resume_json, content_type='application/json')
 
+#view helper
+def get_client_ip(request):
+	x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+	if x_forwarded_for:
+		ip = x_forwarded_for.split(',')[0]
+	else:
+		ip = request.META.get('REMOTE_ADDR')
+	return ip
 
 # user views
 class SignUpView(FormView):
@@ -79,6 +87,8 @@ class UpdateProfileView(LoginRequiredMixin, FormView):
 
 # JobAd views 
 def index(request):
+	
+
 	form = SeeJobsForm(request.GET)
 	if form.is_valid():
 		data=form.cleaned_data
@@ -90,7 +100,10 @@ def index(request):
 	user_input={'search_term': data['job_title'],
 				'city': data['city'],
 				'state': data['state'],
-				'resume': data['resume']}
+				'resume': data['resume'],
+				'ip': get_client_ip(request),
+				'user_agent': request.META['HTTP_USER_AGENT']
+				}
 	search_id = json.dumps(user_input, sort_keys=True)
 
 	if False :#search_id in request.session:
