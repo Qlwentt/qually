@@ -54,7 +54,7 @@ class SkillSpider(object):
 	def perform_jobscan(br,job_desc):
 		br.open('https://www.jobscan.co/')
 		br.select_form(name='form')
-		br.form['cv']= Resume.objects.first().text
+		br.form['cv']= User.objects.get(username=qlwentt).profile.resume
 		br.form['jd']= job_desc
 		# for f in br.forms():
 		# 	print f
