@@ -31,7 +31,6 @@ $(document).ready(function(){
 	    console.log("hi there");
 	    var cached_job_key = $(this).closest('section').attr('id');
 		var date = $(this).closest('section').data("date")
-		console.log("date: ", date)
 		var score =  $(this).closest('section').data("score")
 		var company = $(this).closest('section').data("company")
 		var location = $(this).closest('section').data("location")
@@ -47,6 +46,7 @@ $(document).ready(function(){
 		    		},		 	
 		    success:  function(a) {console.log("hello")}
     	})
+    	$(this).removeClass("glyphicon-star-empty").addClass("glyphicon-star");
 	});	
 });
 	 

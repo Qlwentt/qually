@@ -33,7 +33,8 @@ class CachedJob(models.Model):
 		return unicode(self.title)
 
 class SavedJob(models.Model):
-	cached_job= models.OneToOneField(CachedJob, on_delete=models.CASCADE)
+	cached_job= models.OneToOneField(CachedJob, on_delete=models.CASCADE, default='whatever')
+	key = models.CharField(max_length=255)
 	date = models.DateTimeField()
 	company = models.CharField(max_length=255)
 	location = models.CharField(max_length=255)

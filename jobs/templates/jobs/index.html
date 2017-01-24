@@ -1,12 +1,12 @@
 {% extends "homepage/header.html" %}
 
 {% block content %}
-
+<!-- {% if job.qually_rec %}⭐{%endif%} -->
 
 {% for job in jobs %}
   
 <section class = "job_result" id = "{{job.key}}" data-score="{{job.score}}" data-date="{{job.date}}" data-company="{{job.company}}" data-location="{{job.location}}">
-    <h2>{% if job.qually_rec %}⭐{%endif%}<a href= '{{job.url}}'class = "job-title">{{ job.title }} </a><span class="star">&#9734; &#9733;</span></h2>
+    <h2><a href= '{{job.url}}'class = "job-title">{{ job.title }} </a><a class= "a-tag-star"><span class="star glyphicon glyphicon-star-empty"></span></a></h2>
     <h4>{{ job.company }}, {{ job.location }}</h4>
     <p class = "snippet">{{ job.snippet|safe }}</p> <!--the safe pip is to keep html formatting-->
     <section class = "job-score-info">

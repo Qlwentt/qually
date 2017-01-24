@@ -43,8 +43,13 @@ main.container {
 a:hover{
 	color: #FF6600;
 	text-decoration: none;
+	cursor: pointer;
 }
 
+/*.a-tag-star:hover{
+	color: #1b03c7;
+}
+*/
 /*.fieldWrapper, #submit-button {
 	padding: 5%;
 

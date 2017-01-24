@@ -28,14 +28,15 @@ def get_resume_json(request):
 #savedJobs
 def favorite_job(request):
 	data=dict(request.POST.iterlists())
-	fav=SavedJobs.create(
-		cached_job= CachedJob.objects.get(key=data['cached_job_key']),
-		date = data['date'],
-		company = data['company'],
-		location = data['location'],
-		score = data['score'],
-	)
-	request.user.profile.jobs.add(fav)
+	if not(request.user.profile.jobs.get(key=data['cached_job_key']).exists()):
+		fav=SavedJob.objects.create(
+			cached_job= CachedJob.objects.get(key=data['cached_job_key']),
+			date = data['date'],
+			company = data['company'],
+			location = data['location'],
+			score = data['score'],
+		)
+		request.user.profile.jobs.add(fav)
 	return HttpResponse("200 ok")
 
 
