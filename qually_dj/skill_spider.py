@@ -19,6 +19,8 @@ import os
 # from jobs.job_ad import JobAd
 from jobs.models import Resume
 from jobs.models import Keyword
+from django.contrib.auth.models import User
+
 
 class SkillSpider(object):
 	@staticmethod
