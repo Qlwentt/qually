@@ -1,25 +1,25 @@
 /* keeps top of the page from getting swallowed up */
 #buffer{
-	height: 15vh;
+	height: 20vh;
 }
 
 
 /* nav bar */
-.navbar.navbar-fixed-top.topnav{
+/*.navbar.navbar-fixed-top.topnav{
 	height: 80px;
-}
+}*/
 .navbar-default .navbar-brand {
     color: #1b03c7;
 }
-.navbar-header{
+/*.navbar-header{
 	display: inline;
 	width: 50%
-}
-.navbar-collapse.collapsing, 
+}*/
+
+/*.navbar-collapse.collapsing, 
 .navbar-collapse.in {
 	background: gray;
-    margin-top: -44px;
-}
+}*/
 
 #qually-name {
     font-size: 27px;
@@ -29,6 +29,21 @@
 	color: gray;
 	font-size: 13px;
 	margin: 13px 0;
+	width: 50vw
+}
+
+@media screen and (max-width: 400px){
+    #headline{
+    	display: none;
+        
+    }
+}
+#welcome{
+	color: black;
+}
+
+#welcome:hover{
+	cursor: default;
 }
 
 #quallyfied, a{
@@ -36,9 +51,9 @@
 }
 /* end nav bar*/
 
-main.container {
+/*main.container {
 	margin-top: 80px;
-}
+}*/
 
 a:hover{
 	color: #FF6600;
