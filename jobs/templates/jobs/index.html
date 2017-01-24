@@ -5,22 +5,23 @@
 
 {% for job in jobs %}
   
+<section class = "job_result" id = "{{job.key}}" data-score="{{job.score}}" data-date="{{job.date}}" data-company="{{job.company}}" data-location="{{job.location}}">
+    <h2>{% if job.qually_rec %}⭐{%endif%}<a href= '{{job.url}}'class = "job-title">{{ job.title }} </a><span class="star">&#9734; &#9733;</span></h2>
+    <h4>{{ job.company }}, {{ job.location }}</h4>
+    <p class = "snippet">{{ job.snippet|safe }}</p> <!--the safe pip is to keep html formatting-->
+    <section class = "job-score-info">
+       <!--  <p>Job score: {{ job.score}}</p> -->
+            <p class = "match-keyword">Matching Keywords:  </p>
+            {% for keyword in job.matching_words %}
+                <p class = "keyword"> {{keyword}}</p>
+            {% endfor %}
 
-<h2><a href= '{{job.url}}'class = "job-title">{{ job.title }} {% if job.qually_rec %}⭐{%endif%}</a></h2>
-<h4>{{ job.company }}, {{ job.location }}</h4>
-<p class = "snippet">{{ job.snippet|safe }}</p> <!--the safe pip is to keep html formatting-->
-<section class = "job-score-info">
-   <!--  <p>Job score: {{ job.score}}</p> -->
-        <p class = "match-keyword">Matching Keywords:  </p>
-        {% for keyword in job.matching_words %}
-            <p class = "keyword"> {{keyword}}</p>
-        {% endfor %}
-
-        {% if job_exp_req %}
-            <p>Experience needed: {% job.exp_req}} years</p>
-        {%else %}
-             <p>No experience needed</p>
-        {% endif %}
+            {% if job_exp_req %}
+                <p>Experience needed: {% job.exp_req}} years</p>
+            {%else %}
+                 <p>No experience needed</p>
+            {% endif %}
+    </section>
 </section>
 {% endfor %}
 

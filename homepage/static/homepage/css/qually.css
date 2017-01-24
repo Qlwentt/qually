@@ -5,6 +5,9 @@
 
 
 /* nav bar */
+.navbar.navbar-fixed-top.topnav{
+	height: 80px;
+}
 .navbar-default .navbar-brand {
     color: #1b03c7;
 }
@@ -12,6 +15,12 @@
 	display: inline;
 	width: 50%
 }
+.navbar-collapse.collapsing, 
+.navbar-collapse.in {
+	background: gray;
+    margin-top: -44px;
+}
+
 #qually-name {
     font-size: 27px;
 }
@@ -19,8 +28,7 @@
 #headline{
 	color: gray;
 	font-size: 13px;
-	margin-top: 2%;
-	margin-left: 10%;
+	margin: 13px 0;
 }
 
 #quallyfied, a{
@@ -28,6 +36,9 @@
 }
 /* end nav bar*/
 
+main.container {
+	margin-top: 80px;
+}
 
 a:hover{
 	color: #FF6600;
@@ -95,7 +106,7 @@ input{
 }
 
 .keyword{
-	color: #FF6600;
+	color: #FF6600; /* orange*/
 }
 
 

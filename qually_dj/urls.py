@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^', include('homepage.urls', namespace='homepage')),
     url(r'^jobs/', include('jobs.urls', namespace='jobs')),
     url(r'^get_resume_json/$',views.get_resume_json, name='get_resume'),
+    url(r'^favorite_job/$',views.favorite_job, name='favorite_job'),
 ]

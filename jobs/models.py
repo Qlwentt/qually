@@ -7,18 +7,7 @@ from django.dispatch import receiver
 import uuid
 
 # Create your models here.
-class SavedJob(models.Model):
-	title = models.CharField(max_length=255)
-	url = models.TextField()
-	snippet = models.TextField()
-	key = models.CharField(max_length=255)
-	date = models.DateTimeField()
-	company = models.CharField(max_length=255)
-	location = models.CharField(max_length=255)
-	num_keywords = models.IntegerField(default=0)
 
-	def __unicode__(self):
-		return unicode(self.title)
 
 class Keyword(models.Model):
 	name = models.CharField(max_length=255)
@@ -40,6 +29,16 @@ class CachedJob(models.Model):
 	snippet = models.TextField()
 	content = models.TextField()
 	
+	def __unicode__(self):
+		return unicode(self.title)
+
+class SavedJob(models.Model):
+	cached_job= models.OneToOneField(CachedJob, on_delete=models.CASCADE)
+	date = models.DateTimeField()
+	company = models.CharField(max_length=255)
+	location = models.CharField(max_length=255)
+	score = models.IntegerField(default=0)
+
 	def __unicode__(self):
 		return unicode(self.title)
 

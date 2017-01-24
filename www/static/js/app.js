@@ -6,6 +6,16 @@ $(document).ready(function(){
 
 	$('.keyword:not(#first):not(#last)').append(",\u00A0")
 
+	// $.getJSON("/get_resume_json", 
+ //    function(response){
+
+	// 	$("#star").click(function(e) {
+	// 	        $(this).closest('ul').attr('id');
+
+	// 	}); 
+	// }
+
+
 
 });
   

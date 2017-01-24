@@ -25,6 +25,21 @@ def get_resume_json(request):
     print "resume json"
     return HttpResponse(resume_json, content_type='application/json')
 
+#savedJobs
+def favorite_job(request):
+	data=dict(request.POST.iterlists())
+	request.user.profile.jobs.create(
+		cached_job= CachedJob.objects.get(key=data['cached_job_key']),
+		date = data['date'],
+		company = data['company'],
+		location = data['location'],
+		score = data['score'],
+	)
+	return HttpResponse("200 ok")
+
+
+# def unfavorite_jobs(request):
+# 	pass
 #view helper
 def get_client_ip(request):
 	x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -106,9 +121,8 @@ def index(request):
 				}
 	search_id = json.dumps(user_input, sort_keys=True)
 
-	if False :#search_id in request.session:
-		# filtered_jobs = request.session.get(search_id)
-		print "hello"
+	if search_id in request.session:
+		filtered_jobs = request.session.get(search_id)
 	else:
 		job_ads=[]
 		for i in range(num_records/25):
@@ -146,8 +160,8 @@ def index(request):
 		filtered_jobs= JobAd.order_by_score(filtered_jobs)
 		# filtered_jobs=JobAd.filter_by_score
 		
-		#put this search_id in the session
-		# request.session[search_id] = filtered_jobs
+		# put this search_id in the session
+		request.session[search_id] = filtered_jobs
 		
 
 	page = request.GET.get('page')
