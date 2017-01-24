@@ -15,7 +15,7 @@
 	<h2>My saved jobs</h2>
 	<ul>
 		{% for job in saved_jobs %}
-		<li> <a href= '{{job.url}}'class = "job-title">{{ job.title }}</a></li>
+		<li> <a href= '{{job.cached_job.url}}'class = "job-title">{{ job.cached_job.title }}</a></li>
     {% endfor %}
 	</ul>
 </section>
