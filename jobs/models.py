@@ -33,15 +33,15 @@ class CachedJob(models.Model):
 		return unicode(self.title)
 
 class SavedJob(models.Model):
-	cached_job= models.OneToOneField(CachedJob, on_delete=models.CASCADE, default='whatever')
+	cached_job= models.OneToOneField(CachedJob, on_delete=models.CASCADE, default=1)
 	key = models.CharField(max_length=255)
-	date = models.DateTimeField()
+	date = models.CharField(max_length=255)
 	company = models.CharField(max_length=255)
 	location = models.CharField(max_length=255)
 	score = models.IntegerField(default=0)
 
 	def __unicode__(self):
-		return unicode(self.title)
+		return unicode(self.cached_job.title)
 
 # Create your models here.
 class Profile(models.Model):
@@ -50,7 +50,7 @@ class Profile(models.Model):
 
     # last_name = models.CharField(max_length=100)
     # first_name = models.CharField(max_length=100)
-    yrs_exp = models.IntegerField(blank=True)
+    yrs_exp = models.IntegerField(blank=True, null=True)
     job_title = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=255, blank=True)
     state = models.CharField(max_length=100, blank=True)

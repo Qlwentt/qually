@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 
 
 from job_ad import JobAd
-from jobs.models import Keyword, User, Profile, CachedJob
+from jobs.models import Keyword, User, Profile, CachedJob, SavedJob
 from qually_dj.api_wrapper import QuallyApiWrapper
 from qually_dj.skill_spider import SkillSpider
 from jobs.forms import UserForm, ProfileForm, SignUpForm
@@ -27,8 +27,12 @@ def get_resume_json(request):
 
 #savedJobs
 def favorite_job(request):
-	data=dict(request.POST.iterlists())
-	if not(request.user.profile.jobs.get(key=data['cached_job_key']).exists()):
+	data=request.POST
+	try:
+		request.user.profile.jobs.get(key=data['cached_job_key'])
+		
+	except SavedJob.DoesNotExist:	
+		# print("cached key: ", CachedJob.objects.get(key=data['cached_job_key']))
 		fav=SavedJob.objects.create(
 			cached_job= CachedJob.objects.get(key=data['cached_job_key']),
 			date = data['date'],
@@ -36,6 +40,7 @@ def favorite_job(request):
 			location = data['location'],
 			score = data['score'],
 		)
+		print "new favorite: ",fav
 		request.user.profile.jobs.add(fav)
 	return HttpResponse("200 ok")
 
@@ -123,8 +128,9 @@ def index(request):
 				}
 	search_id = json.dumps(user_input, sort_keys=True)
 
-	if search_id in request.session:
-		filtered_jobs = request.session.get(search_id)
+	if False: #search_id in request.session:
+		print "nope"
+		# filtered_jobs = request.session.get(search_id)
 	else:
 		job_ads=[]
 		for i in range(num_records/25):
@@ -145,7 +151,7 @@ def index(request):
 			#cache job if not already cached
 			try:
 				cj=CachedJob.objects.get(key=job_ad.key)
-				
+				print cj
 			except CachedJob.DoesNotExist:  
 				CachedJob.objects.create(key=job_ad.key, title=job_ad.title, url=job_ad.url,
 										snippet= job_ad.snippet, content=job_ad.content)
