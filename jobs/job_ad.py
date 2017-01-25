@@ -48,8 +48,9 @@ class JobAd(object):
 		self.date=properties['date']
 		self.score=0
 		self.matching_words=[]
-		self.exp_req=0
+		self.exp_req= None
 		self.qually_rec = False
+		# self.keywords = []
 
 	@staticmethod
 	def fix_spacing(text):
@@ -77,9 +78,17 @@ class JobAd(object):
 			try:
 				cj=CachedJob.objects.get(key=job_ad.key)
 				job_ad.content = cj.content
+				#added this
+				job_ad.exp_req = cj.exp_req
+				job_ad.keywords = cj.keywords.all().values_list('name', flat=True)
 			except CachedJob.DoesNotExist:  
 				job_ad.content=job_ad.set_content()
-
+				#added this
+				print "I had to set experience required"
+				
+				job_ad.exp_req=job_ad.set_exp_req()
+				print "experience required is : ", job_ad.exp_req
+				job_ad.keywords=[]
 		return job_ads
 	
 	def set_content(self):	
@@ -109,42 +118,60 @@ class JobAd(object):
 	    return False
 
 	
-	def experience_requirement(self):
+	def set_exp_req(self):
 		sentences=self.content.split(".")
 		# print sentences
 		exp_reqs=[]
-		
+		print "Job: ", self.title
+		print "======================================="
+		print "======================================="
 		for sentence in sentences: 
 		  	if ("experience" in sentence.lower()):
 		  		has_num= JobAd.hasNumbers(JobAd.to_s(sentence))
-		  		print "======================================="
+		  		
+		  		print '----------------------------------'
 		  		print sentence
-		  		print "name:{}, exp have:2, exp needed: {}, show job: {}".format(self.title, has_num, 2>=has_num)
+		  		print "exp have:3, exp needed: {}, show job: {}".format(has_num, 3>=has_num)
 		  		if has_num:
 		  			exp_reqs.append(has_num)
+		  		print '----------------------------------'
 		  		  			
-		print exp_reqs
+		print "Array of experience required: ",exp_reqs
 		if exp_reqs: 
-			self.exp_req=min(exp_reqs)
-			return exp_reqs
+			print "experience required: ", min(exp_reqs)
+			print "======================================="
+			return exp_reqs[0]
 		else:
-			self.exp_req=False
+			print "experience required: FALSE"
+			print "======================================="
 			return False
+		
+
 	
-	def meets_requirement(self, exp_int):
-		if exp_int >= self.experience_requirement():
+	def meets_requirement(self, user_yrs_exp):
+		print "I have {} years experience: ".format(user_yrs_exp)
+		# print "type: ", type(yrs_exp)
+		
+		print "job ad experience req: ", self.exp_req
+
+		if user_yrs_exp >= self.exp_req:
+			print "returning true--meets requirements"
 			return True
 		else:
+			print "returning false--doesn't meet"
 			return False
 
 	# def get_score(self):
 	# 	return self.score
 
 	@classmethod
-	def filter_by_exp(cls, yrs_exp, job_ads):
+	def filter_by_exp(cls, user_yrs_exp, job_ads):
 		qualified = []
+		print "I have {} years of experience".format(user_yrs_exp)
+
 		for job_ad in job_ads:
-			if job_ad.meets_requirement(yrs_exp):
+			if job_ad.meets_requirement(user_yrs_exp):
+				print "{}, {} was appended with {} years of experience".format(job_ad.title, job_ad.company, job_ad.exp_req)
 				qualified.append(job_ad)
 		return qualified
 
@@ -153,39 +180,51 @@ class JobAd(object):
 	def order_by_score(cls, job_ads):
 		return sorted(job_ads, key=lambda x: x.score, reverse=True)
 
+
 	def score_resume(self, resume):
-		jd_words = tb(self.content).words
 		cv_words = tb(resume).words
 		rezscore = 0
-		print cv_words
+		cv_kws = []#defaultdict(lambda: 0)
+		cj=CachedJob.objects.get(key=self.key)
+
+		#if there are already for the job ad
+		if cj.keywords.all():
+			# get keywords for resume
+			print "I didn't have to look for job ad keywords"
+			for keyword in Keyword.objects.all():
+				if keyword.name.lower() in [x.lower() for x in cv_words]:
+					cv_kws.append(keyword.name)
+			
+			# get already saved keywords for job ad 
+			jd_kws = self.keywords
+			
+			# print jd_kws
+			# print cv_kws
+		#you have to get keywords for both resume and job ad
+		else:  
+			jd_kws=[]
+
+			cv_words = tb(resume).words
+			jd_words = tb(self.content).words 
 		
-		jd_kws = defaultdict(lambda: 0)
-		cv_kws = defaultdict(lambda: 0)
 		
 		#build dictionaries with keyword being key and
 		#number of times it's occured as value
-		for keyword in Keyword.objects.all():
-			if keyword.name.lower() in [x.lower() for x in cv_words]:
-				cv_kws[keyword.name]+=1
-			if keyword.name in jd_words:
-				jd_kws[keyword.name]+=1
-
-		print cv_kws
-		print jd_kws
-
-		print "this is jd keys: {}".format(jd_kws.keys())
-		for keyword in jd_kws.keys():
-			this_score = cv_kws[keyword]*jd_kws[keyword]
+			for keyword in Keyword.objects.all():
+				if keyword.name.lower() in [x.lower() for x in cv_words]:
+					cv_kws.append(keyword.name)
+				if keyword.name.lower() in [x.lower() for x in jd_words]: 
+					jd_kws.append(keyword.name)
+					keyword.cachedjob_set.add(cj) #add this keyword in database for this job ad
 			
-			# add this keyword to list of matching kywds b/n resume and job desc
-			# if this keyword was in both jd and cv
-			if this_score > 0:
-				self.matching_words.append(keyword)
+			print cv_kws
+			print jd_kws
+			#set keywords for this job ad
+			# self.keywords=cv_kws
+		#return the number of keywords that occur in both
+		self.matching_words = [w for w in cv_kws if w in jd_kws]
+		return len(self.matching_words)
 
-			rezscore+= this_score
-
-		print "rezscore{}".format(rezscore)
-		return rezscore
 
 	def set_qually_rec(self):
 		if self.score > 5:

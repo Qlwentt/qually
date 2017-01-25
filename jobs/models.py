@@ -11,7 +11,7 @@ import uuid
 
 class Keyword(models.Model):
 	name = models.CharField(max_length=255)
-	category = models.CharField(max_length=255)
+	category = models.CharField(max_length=255, blank=True)
 
 	def __unicode__(self):
 		return unicode(self.name)
@@ -23,11 +23,15 @@ class Resume(models.Model):
 		return unicode(self.name)
 
 class CachedJob(models.Model):
+	keywords = models.ManyToManyField(Keyword, blank=True)
+	
 	key = models.CharField(max_length=255)
 	title = models.CharField(max_length=255)
 	url = models.TextField()
 	snippet = models.TextField()
 	content = models.TextField()
+	exp_req = models.IntegerField(default=0)
+
 
 	def __unicode__(self):
 		return unicode(self.title)
@@ -38,7 +42,7 @@ class SavedJob(models.Model):
 	date = models.CharField(max_length=255)
 	company = models.CharField(max_length=255)
 	location = models.CharField(max_length=255)
-	score = models.IntegerField(default=0)
+	score = models.IntegerField(blank=True, null=True)
 
 	def __unicode__(self):
 		return unicode(self.cached_job.title)

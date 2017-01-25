@@ -117,7 +117,7 @@ def index(request):
 	#have case for if the form is not valid
 	
 	
-	num_records = 1000
+	num_records = 25
 
 	user_input={'search_term': data['job_title'],
 				'city': data['city'],
@@ -138,12 +138,12 @@ def index(request):
 		
 		# use job_ads content to get keywords
 		
-		br = SkillSpider.login_jobscan()
-		for job_ad in job_ads:
-			soup = SkillSpider.perform_jobscan(br, job_ad.content)
-			keywords=SkillSpider.get_keywords(soup)
-			SkillSpider.add_keywords_to_database(keywords)
-			time.sleep(4)
+		# br = SkillSpider.login_jobscan()
+		# for job_ad in job_ads:
+		# 	soup = SkillSpider.perform_jobscan(br, job_ad.content)
+		# 	keywords=SkillSpider.get_keywords(soup)
+		# 	SkillSpider.add_keywords_to_database(keywords)
+		# 	time.sleep(4)
 		
 		job_scores = []
 
@@ -154,8 +154,9 @@ def index(request):
 				print cj
 			except CachedJob.DoesNotExist:  
 				CachedJob.objects.create(key=job_ad.key, title=job_ad.title, url=job_ad.url,
-										snippet= job_ad.snippet, content=job_ad.content)
-
+										snippet= job_ad.snippet, content=job_ad.content, 
+										exp_req = job_ad.exp_req)
+				print "hello except"
 			#score resume and associate score with jobAd
 			job_ad.score = job_ad.score_resume(user_input['resume'])
 			job_ad.set_qually_rec()
@@ -164,7 +165,7 @@ def index(request):
 
 
 		#filter by experience--leaving out those that don't match
-		filtered_jobs=JobAd.filter_by_exp(form['yrs_exp'], job_ads)
+		filtered_jobs=JobAd.filter_by_exp(data['yrs_exp'], job_ads)
 		filtered_jobs= JobAd.order_by_score(filtered_jobs)
 		# filtered_jobs=JobAd.filter_by_score
 		

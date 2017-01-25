@@ -16,11 +16,8 @@
                 <p class = "keyword"> {{keyword}}</p>
             {% endfor %}
 
-            {% if job_exp_req %}
-                <p>Experience needed: {% job.exp_req}} years</p>
-            {%else %}
-                 <p>No experience needed</p>
-            {% endif %}
+            
+                <p>Experience needed: {{job.exp_req}} years</p>
     </section>
 </section>
 {% endfor %}
