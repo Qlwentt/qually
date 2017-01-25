@@ -80,6 +80,8 @@ a:hover{
 	padding-top: 0;
 }
 
+
+
 #other-fields:hover{
 	color:#1b03c7;
 }
@@ -119,6 +121,9 @@ input{
 */        padding:1%;
         
     }
+    #other-fields{
+		margin-left: 2vw;
+	}
     /*#person-details #resume_state{
 		color: red;
 	}*/
