@@ -128,9 +128,8 @@ def index(request):
 				}
 	search_id = json.dumps(user_input, sort_keys=True)
 
-	if False: #search_id in request.session:
-		print "nope"
-		# filtered_jobs = request.session.get(search_id)
+	if  search_id in request.session:
+		filtered_jobs = request.session.get(search_id)
 	else:
 		job_ads=[]
 		for i in range(num_records/25):
