@@ -13,7 +13,7 @@
        <!--  <p>Job score: {{ job.score}}</p> -->
             <p class = "match-keyword">Matching Keywords:  </p>
             {% for keyword in job.matching_words %}
-                <p class = "keyword"> {{keyword}}</p>
+                <p class = "keyword"> {{keyword}}{% if not forloop.last %},&nbsp;{% endif %}</p>
             {% endfor %}
 
             

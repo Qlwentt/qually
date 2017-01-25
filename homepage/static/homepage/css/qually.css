@@ -5,6 +5,7 @@
 
 
 /* nav bar */
+
 /*.navbar.navbar-fixed-top.topnav{
 	height: 80px;
 }*/
@@ -51,6 +52,8 @@
 }
 /* end nav bar*/
 
+
+
 /*main.container {
 	margin-top: 80px;
 }*/
@@ -69,6 +72,8 @@ a:hover{
 	padding: 5%;
 
 }*/
+
+
 /* form styling */
 #title-field{
 	padding-top: 0;
@@ -134,3 +139,11 @@ input{
 /*	font-family: 'Open Sans', serif;
 */
 }
+
+/* profile page */
+/*#resume-box{
+	
+}*/
+
+
+

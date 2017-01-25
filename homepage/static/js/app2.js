@@ -18,12 +18,21 @@ var csrftoken = getCookie('csrftoken');
 
 
 $(document).ready(function(){
+	//key word commas
 	console.log("I'm here")
-	$('.keyword').first().attr('id', 'first'); 
-	$('.keyword').last().attr('id', 'last'); 
+	// // $('.keyword').first().attr('id', 'first'); 
+	
+	// // $('.job_result').each(function(index){
+ // //       console.log(index);
+ // //       $('.keyword').last().addClass('last');
+ // //    }); 
+	// // $( "div span:last-child" )
+ // //  		.css({ color:"red", fontSize:"80%" })
+	// $('.keyword').last().addClass('last');
+	// $('.keyword:last-child').addClass('last');
 
-	$('.keyword:not(#first):not(#last)').append(",\u00A0")
-
+	// $('.keyword:not(.last)').append(",\u00A0")
+	// $('#update-profile p:nth-child(7)').attr('id', 'resume-box');
 
     
 	$(".star").click(function(e) {
