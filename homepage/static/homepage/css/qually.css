@@ -30,7 +30,7 @@
 	color: gray;
 	font-size: 13px;
 	margin: 13px 0;
-	width: 50vw
+	white-space: nowrap;
 }
 
 @media screen and (max-width: 400px){
@@ -141,9 +141,12 @@ input{
 }
 
 /* profile page */
-/*#resume-box{
-	
-}*/
+#update-profile{
+	margin-top: -10vh;
+	margin-left: 0.1vw;
+}
+#saved-jobs h2{
+	margin-left: 1.4vw;
 
-
+}
 

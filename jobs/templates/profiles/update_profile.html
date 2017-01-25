@@ -2,22 +2,53 @@
 {% extends 'homepage/header.html' %}
 
 {% block content %}
-<section id="update-profile">
+<section id="update-profile" class = "row">
   <h2>{{request.user.first_name }}'s Profile</h2>
+  
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ user_form.as_p }}
-    {{ profile_form.as_p }}
-    <button type="submit">Save</button>
+    <div id = "person-details" class="col-md-4 form-horizontal">
+      <label for="id_first_name">First name:</label> 
+      <input id="id_first_name" class="form-control" maxlength="30" name="first_name" type="text" value="{{request.user.first_name }}"/>
+
+      <label for="id_last_name">Last name:</label>
+      <input id="id_last_name" class="form-control" maxlength="30" name="last_name" type="text" value="Wentt"/>
+
+      <label for="id_email">Email address:</label>
+      <input id="id_email" class="form-control" maxlength="254" name="email" type="email" value="quai.wentt@gmail.com"/>
+      
+      <label for="id_job_title">Job title:</label> 
+      <input id="id_job_title" class="form-control" maxlength="100" name="job_title" type="text" value="software engineer"/>
+
+      <label for="id_yrs_exp">Yrs exp:</label> 
+      <input id="id_yrs_exp" class="form-control" name="yrs_exp" type="number" value="0"/>
+
+      <label for="id_city">City:</label> 
+      <input id="id_city" class="form-control" maxlength="255" name="city" type="text" value="SEATTLE"/>
+    
+      <label for="id_state">State:</label> 
+      <input id="id_state" class="form-control" maxlength="100" name="state" type="text" value="WA" />
+    </div>
+    
+    <div id = "resume-input" class = "col-md-4">
+      <label for="id_resume">Resume:</label> 
+      <textarea cols="40" class="form-control" id="id_resume" name="resume" rows="10"></textarea>
+    </div>
+
+    <section id = "saved-jobs" class ="col-md-4" >
+      <h2>My saved jobs</h2>
+      <ul>
+      {% for job in saved_jobs %}
+        <li> <a href= '{{job.cached_job.url}}'class = "job-title">{{ job.cached_job.title }}</a></li>
+      {% endfor %}
+      </ul>
+    </section>
+
+    <div class = "row">
+      <button class="col-sm-2 col-sm-offset-3 btn btn-primary" type="submit">Save</button>
+    </div>
   </form>
 </section>
-<section id = "saved_jobs">
-	<h2>My saved jobs</h2>
-	<ul>
-		{% for job in saved_jobs %}
-		<li> <a href= '{{job.cached_job.url}}'class = "job-title">{{ job.cached_job.title }}</a></li>
-    {% endfor %}
-	</ul>
-</section>
+
 
 {% endblock content %}
