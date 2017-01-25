@@ -33,8 +33,7 @@ $(document).ready(function(){
 
 	// $('.keyword:not(.last)').append(",\u00A0")
 	// $('#update-profile p:nth-child(7)').attr('id', 'resume-box');
-
-    
+    $("#resume-input #id_resume").attr("rows","18")
 	$(".star").click(function(e) {
 	   
 	    console.log("hi there");

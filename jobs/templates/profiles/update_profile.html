@@ -12,30 +12,30 @@
       <input id="id_first_name" class="form-control" maxlength="30" name="first_name" type="text" value="{{request.user.first_name }}"/>
 
       <label for="id_last_name">Last name:</label>
-      <input id="id_last_name" class="form-control" maxlength="30" name="last_name" type="text" value="Wentt"/>
+      <input id="id_last_name" class="form-control" maxlength="30" name="last_name" type="text" value="{{request.user.last_name}}"/>
 
       <label for="id_email">Email address:</label>
-      <input id="id_email" class="form-control" maxlength="254" name="email" type="email" value="quai.wentt@gmail.com"/>
+      <input id="id_email" class="form-control" maxlength="254" name="email" type="email" value="{{request.user.email}}"/>
       
       <label for="id_job_title">Job title:</label> 
-      <input id="id_job_title" class="form-control" maxlength="100" name="job_title" type="text" value="software engineer"/>
+      <input id="id_job_title" class="form-control" maxlength="100" name="job_title" type="text" value="{{request.user.profile.job_title}}"/>
 
       <label for="id_yrs_exp">Yrs exp:</label> 
-      <input id="id_yrs_exp" class="form-control" name="yrs_exp" type="number" value="0"/>
+      <input id="id_yrs_exp" class="form-control" name="yrs_exp" type="number" value="{{request.user.profile.yrs_exp}}"/>
 
       <label for="id_city">City:</label> 
-      <input id="id_city" class="form-control" maxlength="255" name="city" type="text" value="SEATTLE"/>
+      <input id="id_city" class="form-control" maxlength="255" name="city" type="text" value="{{request.user.profile.city}}"/>
     
       <label for="id_state">State:</label> 
-      <input id="id_state" class="form-control" maxlength="100" name="state" type="text" value="WA" />
+      <input id="id_state" class="form-control" maxlength="100" name="state" type="text" value="{{request.user.profile.state}}" />
     </div>
     
-    <div id = "resume-input" class = "col-md-4">
+    <div id = "resume-input" class = "col-md-5">
       <label for="id_resume">Resume:</label> 
-      <textarea cols="40" class="form-control" id="id_resume" name="resume" rows="10"></textarea>
+      <textarea cols="40" class="form-control" id="id_resume" name="resume" rows="10">{{request.user.profile.resume}}</textarea>
     </div>
 
-    <section id = "saved-jobs" class ="col-md-4" >
+    <section id = "saved-jobs" class ="col-md-3" >
       <h2>My saved jobs</h2>
       <ul>
       {% for job in saved_jobs %}
@@ -45,7 +45,7 @@
     </section>
 
     <div class = "row">
-      <button class="col-sm-2 col-sm-offset-3 btn btn-primary" type="submit">Save</button>
+      <button class="col-xs-12 col-sm-3 col-sm-offset-5 btn btn-primary" type="submit">Save</button>
     </div>
   </form>
 </section>

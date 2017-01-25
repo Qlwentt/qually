@@ -118,6 +118,9 @@ input{
 */        padding:1%;
         
     }
+    /*#person-details #resume_state{
+		color: red;
+	}*/
 }
 /* end form styling */
 
@@ -145,8 +148,16 @@ input{
 	margin-top: -10vh;
 	margin-left: 0.1vw;
 }
+
+#update-profile h2{
+	margin-bottom: 2vh;
+}
+
 #saved-jobs h2{
 	margin-left: 1.4vw;
 
 }
 
+#person-details #id_state{
+	width: 18%;
+}
