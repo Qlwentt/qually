@@ -160,12 +160,24 @@ input{
 
 
 #saved-jobs h2{
-	margin-left: 1.4vw;
+	margin-left: 1.7vw;
 	margin-top: 1px;
 }
 
 #person-details #id_state{
 	width: 18%;
+}
+
+#saved-jobs li{
+	margin: 8px;
+}
+
+#saved-jobs a{
+	/*font-weight: 100;*/
+}
+
+.company-name{
+	font-weight: normal;
 }
 
 
