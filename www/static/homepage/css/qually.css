@@ -1,25 +1,26 @@
 /* keeps top of the page from getting swallowed up */
 #buffer{
-	height: 15vh;
+	height: 20vh;
 }
 
 
 /* nav bar */
-.navbar.navbar-fixed-top.topnav{
+
+/*.navbar.navbar-fixed-top.topnav{
 	height: 80px;
-}
+}*/
 .navbar-default .navbar-brand {
     color: #1b03c7;
 }
-.navbar-header{
+/*.navbar-header{
 	display: inline;
 	width: 50%
-}
-.navbar-collapse.collapsing, 
+}*/
+
+/*.navbar-collapse.collapsing, 
 .navbar-collapse.in {
 	background: gray;
-    margin-top: -44px;
-}
+}*/
 
 #qually-name {
     font-size: 27px;
@@ -29,6 +30,21 @@
 	color: gray;
 	font-size: 13px;
 	margin: 13px 0;
+	white-space: nowrap;
+}
+
+@media screen and (max-width: 400px){
+    #headline{
+    	display: none;
+        
+    }
+}
+#welcome{
+	color: black;
+}
+
+#welcome:hover{
+	cursor: default;
 }
 
 #quallyfied, a{
@@ -36,9 +52,11 @@
 }
 /* end nav bar*/
 
-main.container {
+
+
+/*main.container {
 	margin-top: 80px;
-}
+}*/
 
 a:hover{
 	color: #FF6600;
@@ -54,6 +72,8 @@ a:hover{
 	padding: 5%;
 
 }*/
+
+
 /* form styling */
 #title-field{
 	padding-top: 0;
@@ -98,6 +118,9 @@ input{
 */        padding:1%;
         
     }
+    /*#person-details #resume_state{
+		color: red;
+	}*/
 }
 /* end form styling */
 
@@ -118,4 +141,24 @@ input{
 .snippet{
 /*	font-family: 'Open Sans', serif;
 */
+}
+
+/* profile page */
+#update-profile{
+	margin-top: -10vh;
+	margin-left: 0.1vw;
+}
+
+#update-profile h2{
+	margin-bottom: 2vh;
+}
+
+
+#saved-jobs h2{
+	margin-left: 1.4vw;
+	margin-top: 1px;
+}
+
+#person-details #id_state{
+	width: 18%;
 }

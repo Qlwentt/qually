@@ -128,7 +128,7 @@ def index(request):
 				}
 	search_id = json.dumps(user_input, sort_keys=True)
 
-	if  search_id in request.session:
+	if False: #search_id in request.session:
 		filtered_jobs = request.session.get(search_id)
 	else:
 		job_ads=[]
@@ -166,10 +166,12 @@ def index(request):
 		#filter by experience--leaving out those that don't match
 		filtered_jobs=JobAd.filter_by_exp(data['yrs_exp'], job_ads)
 		filtered_jobs= JobAd.order_by_score(filtered_jobs)
-		# filtered_jobs=JobAd.filter_by_score
 		
+		
+		
+
 		# put this search_id in the session
-		request.session[search_id] = filtered_jobs
+		#request.session[search_id] = filtered_jobs
 		
 
 	page = request.GET.get('page')

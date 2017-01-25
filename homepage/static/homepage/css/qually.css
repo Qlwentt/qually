@@ -24,6 +24,7 @@
 
 #qually-name {
     font-size: 27px;
+    font-weight: normal;
 }
 
 #headline{
@@ -129,6 +130,10 @@ input{
 	color: #FF6600;
 }
 
+.job-title{
+	font-weight: 100;
+}
+
 .match-keyword, .keyword{
 	display: inline;
 }
@@ -153,11 +158,36 @@ input{
 	margin-bottom: 2vh;
 }
 
+
 #saved-jobs h2{
 	margin-left: 1.4vw;
-
+	margin-top: 1px;
 }
 
 #person-details #id_state{
 	width: 18%;
 }
+
+
+/* jobs list view */
+.page-content{
+	margin-top: -10vh;
+	margin-left: 14vw;
+	width: 70vw;
+}
+
+a.job-title:hover{
+	color:  #1b03c7;
+	font-weight: normal;
+}	
+
+
+.star{
+	opacity: 0.2;
+	font-weight: 100;
+	font-size: 0.7em;
+    vertical-align: top;
+}
+
+.star:hover{
+	opacity: 1;
