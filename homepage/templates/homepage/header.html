@@ -31,6 +31,9 @@
 
     <!-- favicon -->
     <link rel=icon href="{% static 'quaMag.png' %}">
+
+    <!--indeed click tracking -->
+    <script type="text/javascript"src="http://gdc.indeed.com/ads/apiresults.js"></script>
 </head>
 <div id="buffer"></div>
 <body class="body" style="background-color:#f6f6f6">
@@ -106,7 +109,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <ul class="list-inline">
+                <span id="indeed_at"><a title="Job Search" href="https://www.indeed.com">jobs by <img alt=Indeed src="https://www.indeed.com/p/jobsearch.gif" style="border: 0; vertical-align: middle;"></a></span>
+                <!-- <ul class="list-inline">
                     <li>
                         <a href="{% url 'homepage:index' %}">Home</a>
                     </li>
@@ -122,7 +126,7 @@
                     <li>
                         <a href="#contact">Contact</a>
                     </li>
-                </ul>
+                </ul> -->
                 <p class="copyright text-muted small">Copyright &copy; Qually 2017. All Rights Reserved</p>
             </div>
         </div>
