@@ -54,7 +54,9 @@ class JobAd(object):
 
 	@staticmethod
 	def fix_spacing(text):
-		  text=re.sub(r'([a-z:.)])([A-Z]|\d\W)', r'\1 \2', text)
+		  text=re.sub(r'([a-z:.)])([A-Z]|\d)', r'\1 \2', text)
+		  text=re.sub(r'([A-Z])(\d)', r'\1 \2', text)
+		  
 		  text=text.decode("utf-8").replace(u"\u2022", " ").encode("utf-8")
 		  return text
 
@@ -97,6 +99,7 @@ class JobAd(object):
 	    soup = BeautifulSoup(html)
 	    job_ad_text = soup.find('span', attrs={'id': 'job_summary'}).text
 	    job_ad_text= JobAd.fix_spacing(job_ad_text)
+	    print job_ad_text
 	    return job_ad_text
 
 	@staticmethod
@@ -106,21 +109,24 @@ class JobAd(object):
 	@staticmethod
 	def hasNumbers(inputString):
 	    # has_digits=bool(re.search(r'\d', inputString))
-	    answer = "none"
+	    answer = None
 	    # numbers=["one","two","three","four","five","six","seven","eight","nine","ten","1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-	    get_digits={"one": 1, "1" : 1,"two": 2, "2": 2, "three": 3, "3": 3, "four": 4, "4": 4, "five": 5,"5": 5, "six": 6,"6": 6, "seven": 7,"7": 7,"eight": 8,"8": 8,"nine": 9,"9": 9,"ten": 10,"10": 10, "none": False}
+	    get_digits={"one": 1, "1" : 1,"two": 2, "2": 2, "three": 3, "3": 3, "four": 4, "4": 4, "five": 5,"5": 5, "six": 6,"6": 6, "seven": 7,"7": 7,"eight": 8,"8": 8,"nine": 9,"9": 9,"ten": 10,"10": 10}
+	    found_match = re.match(r'(\d)(\s|\W|\d)', inputString)
 	    for number in get_digits:
 	    	words = inputString.split()
 	    	for word in words:
-	    		if number == word or number+"+"== word or number+"-" == word:
+	    		if (number == word or number+"+"== word or number+"-" == word) or (found_match is not None):
 	    			answer=number
+	    			if answer == None:
+	    				answer = found_match
 	    			return get_digits[answer]
 	    return False
 
 	
 	def set_exp_req(self):
-		sentences=self.content.split(".")
-		# print sentences
+		sentences=re.split(r'[.,]', self.content)
+		print sentences
 		exp_reqs=[]
 		print "Job: ", self.title
 		print "======================================="
@@ -140,7 +146,7 @@ class JobAd(object):
 		if exp_reqs: 
 			print "experience required: ", min(exp_reqs)
 			print "======================================="
-			return exp_reqs[0]
+			return min(exp_reqs)
 		else:
 			print "experience required: FALSE"
 			print "======================================="
