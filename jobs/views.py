@@ -124,11 +124,12 @@ def index(request):
 				'state': data['state'],
 				'resume': data['resume'],
 				'ip': get_client_ip(request),
-				'user_agent': request.META['HTTP_USER_AGENT']
+				'user_agent': request.META['HTTP_USER_AGENT'],
+				'years_exp': data['yrs_exp']
 				}
 	search_id = json.dumps(user_input, sort_keys=True)
 
-	if False: #search_id in request.session:
+	if search_id in request.session:
 		filtered_jobs = request.session.get(search_id)
 	else:
 		job_ads=[]
@@ -171,7 +172,7 @@ def index(request):
 		
 
 		# put this search_id in the session
-		#request.session[search_id] = filtered_jobs
+		request.session[search_id] = filtered_jobs
 		
 
 	page = request.GET.get('page')
