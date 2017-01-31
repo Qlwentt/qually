@@ -1,0 +1,1 @@
+web: gunicorn qually.wsgi --log-file -
