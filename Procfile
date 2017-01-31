@@ -1,1 +1,1 @@
-web: gunicorn qually.wsgi --log-file -
+web: gunicorn qually_dj.wsgi --log-file -
