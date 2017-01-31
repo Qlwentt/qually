@@ -167,6 +167,8 @@ USE_L10N = True
 USE_TZ = True
 
 
+LOGIN_REDIRECT_URL = '/'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
@@ -175,11 +177,11 @@ USE_TZ = True
 
 STATIC_URL = '/staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, "www", "static")
-LOGIN_REDIRECT_URL = '/'
 
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, "static"),
-# )
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 # try:
 #     if sys.argv[1] == 'runserver':
         
