@@ -14,7 +14,11 @@ import os, sys
 from os.path import join, dirname
 # from dotenv import load_dotenv
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
 # dotenv_path = join(dirname(__file__), '.env')
 
 # load_dotenv(dotenv_path)
@@ -175,12 +179,12 @@ LOGIN_REDIRECT_URL = '/'
 
 
 
-STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, "www", "static")
 
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "homepage", "static"),
+    os.path.join(BASE_DIR, "static"),
 )
 
 # try:
