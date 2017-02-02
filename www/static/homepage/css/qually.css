@@ -24,6 +24,7 @@
 
 #qually-name {
     font-size: 27px;
+    font-weight: normal;
 }
 
 #headline{
@@ -79,6 +80,8 @@ a:hover{
 	padding-top: 0;
 }
 
+
+
 #other-fields:hover{
 	color:#1b03c7;
 }
@@ -92,7 +95,7 @@ a:hover{
 }
 
 #id_state{
-	width: 10%;
+	width: 15%;
 }
 
 #state, #yrs-exp-label{
@@ -118,6 +121,9 @@ input{
 */        padding:1%;
         
     }
+    #other-fields{
+		margin-left: 2vw;
+	}
     /*#person-details #resume_state{
 		color: red;
 	}*/
@@ -127,6 +133,10 @@ input{
 
 .job-title:hover, .navbar-default .navbar-brand:hover{
 	color: #FF6600;
+}
+
+.job-title{
+	font-weight: 100;
 }
 
 .match-keyword, .keyword{
@@ -155,10 +165,46 @@ input{
 
 
 #saved-jobs h2{
-	margin-left: 1.4vw;
+	margin-left: 1.7vw;
 	margin-top: 1px;
 }
 
 #person-details #id_state{
 	width: 18%;
 }
+
+#saved-jobs li{
+	margin: 8px;
+}
+
+#saved-jobs a{
+	/*font-weight: 100;*/
+}
+
+.company-name{
+	font-weight: normal;
+}
+
+
+/* jobs list view */
+.page-content{
+	margin-top: -10vh;
+	margin-left: 14vw;
+	width: 70vw;
+}
+
+a.job-title:hover{
+	color:  #1b03c7;
+	font-weight: normal;
+}	
+
+
+.star{
+	opacity: 0.2;
+	font-weight: 100;
+	font-size: 0.7em;
+    vertical-align: top;
+}
+
+.star:hover{
+	opacity: 1;
