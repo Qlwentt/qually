@@ -185,7 +185,7 @@ STATIC_URL = '/staticfiles/'
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-
+]
 
 # try:
 #     if sys.argv[1] == 'runserver':
