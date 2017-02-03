@@ -185,7 +185,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "www", "static")
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,"homepage", "static"), os.path.join(BASE_DIR,"homepage", "static", "css"),
-    os.path.join(BASE_DIR,"homepage", "static", "fonts"), os.path.join(BASE_DIR,"homepage", "static", "js"),
+    os.path.join(BASE_DIR,"homepage", "static", "fonts"), os.path.join(BASE_DIR,"homepage", "static", "js")
 )
 
 # try:
