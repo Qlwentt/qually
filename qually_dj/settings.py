@@ -179,7 +179,7 @@ LOGIN_REDIRECT_URL = '/'
 
 
 
-STATIC_URL = '/static/'
+STATIC_URL = 'www/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "www", "static")
 
 
