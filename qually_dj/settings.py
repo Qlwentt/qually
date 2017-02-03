@@ -179,14 +179,13 @@ LOGIN_REDIRECT_URL = '/'
 
 
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "www", "static")
+STATIC_URL = '/staticfiles/'
 
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-    # os.path.join(BASE_DIR,"homepage", "static", "fonts"), os.path.join(BASE_DIR,"homepage", "static", "js")
-)
 
 # try:
 #     if sys.argv[1] == 'runserver':
