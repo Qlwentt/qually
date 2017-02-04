@@ -67,6 +67,7 @@ INSTALLED_APPS = [
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        'djangosecure',
 ]
 ROOT_URLCONF = 'qually_dj.urls'
 
@@ -93,6 +94,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'djangosecure.middleware.SecurityMiddleware',
 ]
 
 
