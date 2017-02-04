@@ -41,6 +41,9 @@ JOB_SCAN_EMAIL = os.environ['JOB_SCAN_EMAIL']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Redirect to a secure connection
+SECURE_SSL_REDIRECT = True
+
 ALLOWED_HOSTS = ['qually-dev.us-west-2.elasticbeanstalk.com', 'localhost', '127.0.0.1', 'www.quallyjobs.com', 'mighty-mesa-76596.herokuapp.com']
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
