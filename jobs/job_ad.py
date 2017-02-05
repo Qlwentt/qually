@@ -190,7 +190,7 @@ class JobAd(object):
 
 
 	def score_resume(self, resume):
-		cv_words = tb(resume).words
+		cv_words = resume.split()
 		rezscore = 0
 		cv_kws = []#defaultdict(lambda: 0)
 		cj=CachedJob.objects.get(key=self.key)
@@ -212,8 +212,8 @@ class JobAd(object):
 		else:  
 			jd_kws=[]
 
-			cv_words = tb(resume).words
-			jd_words = tb(self.content).words 
+			# cv_words = tb(resume).words
+			jd_words = self.content.split()
 		
 		
 		#build dictionaries with keyword being key and
