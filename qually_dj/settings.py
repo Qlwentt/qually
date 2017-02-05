@@ -47,15 +47,7 @@ SECURE_SSL_REDIRECT = True
 ALLOWED_HOSTS = ['qually-dev.us-west-2.elasticbeanstalk.com', 'localhost', '127.0.0.1', 'www.quallyjobs.com', 'mighty-mesa-76596.herokuapp.com']
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
-# Application definition
 
-# MODE = "development"
-# try:
-#     sys.argv[1] == 'runserver'
-# except IndexError:
-#     MODE = "production"
-
-# if MODE == "development":
 INSTALLED_APPS = [
         'homepage',
         'jobs',
@@ -67,25 +59,12 @@ INSTALLED_APPS = [
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
-        # 'djangosecure',
+        'djangosecure',
 ]
 ROOT_URLCONF = 'qually_dj.urls'
 
-# else:
-#     INSTALLED_APPS = [
-#         'qually_dj.homepage',
-#         'qually_dj.jobs',
-#         # 'user',
-#         'django.contrib.admin',
-#         'django.contrib.auth',
-#         'django.contrib.contenttypes',
-#         'django.contrib.sessions',
-#         'django.contrib.messages',
-#         'django.contrib.staticfiles',
-#     ]
-#     ROOT_URLCONF = 'qually_dj.qually_dj.urls'
-
 MIDDLEWARE = [
+    'djangosecure.middleware.SecurityMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -94,7 +73,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    # 'djangosecure.middleware.SecurityMiddleware',
 ]
 
 
