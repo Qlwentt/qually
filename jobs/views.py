@@ -158,9 +158,9 @@ def index(request):
 										exp_req = job_ad.exp_req)
 				print "hello except"
 			#score resume and associate score with jobAd
-			job_ad.score = job_ad.score_resume(user_input['resume'])
-			job_ad.set_qually_rec()
-			print job_ad.qually_rec
+			# job_ad.score = job_ad.score_resume(user_input['resume'])
+			# job_ad.set_qually_rec()
+			# print job_ad.qually_rec
 		print "job_scores: {}".format(job_scores)
 
 
