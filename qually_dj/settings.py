@@ -43,8 +43,7 @@ DEBUG = False
 
 # Redirect to a secure connection
 SECURE_SSL_REDIRECT = True
-SECURE_PROXY_SSL_HEADER = (“HTTP_X_FORWARDED_PROTO”, “https”)
-
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['qually-dev.us-west-2.elasticbeanstalk.com', 'localhost', '127.0.0.1', 'www.quallyjobs.com', 'mighty-mesa-76596.herokuapp.com']
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
