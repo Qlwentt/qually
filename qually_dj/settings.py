@@ -41,7 +41,7 @@ JOB_SCAN_EMAIL = os.environ['JOB_SCAN_EMAIL']
 # JOB_SCAN_EMAIL = os.environ.get('JOB_SCAN_EMAIL')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Redirect to a secure connection
 SECURE_SSL_REDIRECT = True
