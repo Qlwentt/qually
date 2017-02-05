@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os, sys
 from os.path import join, dirname
+import dj_database_url
+
 # from dotenv import load_dotenv
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -113,9 +115,8 @@ WSGI_APPLICATION = 'qually_dj.wsgi.application'
 #     }
 # else:
 
-import dj_database_url
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+# db_from_env = dj_database_url.config()
+# DATABASES['default'].update(db_from_env)
 
 try:
     if sys.argv[1] == 'runserver':
@@ -130,6 +131,12 @@ try:
             }
         } 
 except IndexError:
+    DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+}
+
     print "using production database"
 
 # Password validation
