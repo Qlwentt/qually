@@ -132,7 +132,6 @@ try:
         } 
 except IndexError:
     DATABASES = {'default': dj_database_url.config()}
-}
 
     print "using production database"
 
