@@ -83,12 +83,12 @@ class SkillSpider(object):
 		return keywords
 	
 	@staticmethod	
-	def add_keywords_to_database(keywords):
+	def add_keywords_to_database(keywords, cat):
 		for kyword in keywords:
 			try:
 				Keyword.objects.get(name=kyword)
 			except Keyword.DoesNotExist: 
-				Keyword.objects.create(name=kyword, category='none')
+				Keyword.objects.create(name=kyword, category=cat)
 
 
 

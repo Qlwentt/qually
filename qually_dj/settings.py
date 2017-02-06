@@ -44,8 +44,10 @@ JOB_SCAN_EMAIL = os.environ['JOB_SCAN_EMAIL']
 DEBUG = True
 
 # Redirect to a secure connection
+# comment out in development
 SECURE_SSL_REDIRECT = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 ALLOWED_HOSTS = ['qually-dev.us-west-2.elasticbeanstalk.com', 'localhost', '127.0.0.1', 'www.quallyjobs.com', 'mighty-mesa-76596.herokuapp.com']
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
@@ -118,22 +120,16 @@ WSGI_APPLICATION = 'qually_dj.wsgi.application'
 # db_from_env = dj_database_url.config()
 # DATABASES['default'].update(db_from_env)
 
-try:
-    if sys.argv[1] == 'runserver':
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.postgresql_psycopg2',
-                'NAME': 'qually',
-                'USER': 'qually',
-                'PASSWORD': '',
-                'HOST': 'localhost',
-                'PORT': '',
-            }
-        } 
-except IndexError:
-    DATABASES = {'default': dj_database_url.config()}
-
-    print "using production database"
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'qually',
+        'USER': 'qually',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+} 
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -189,6 +185,7 @@ STATICFILES_DIRS = [
         
 #         # STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # except IndexError:    
-   
+
+#comment out to run locally   
 DATABASES = {'default': dj_database_url.config()}
 

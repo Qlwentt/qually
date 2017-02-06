@@ -142,7 +142,7 @@ def index(request):
 		# for job_ad in job_ads:
 		# 	soup = SkillSpider.perform_jobscan(br, job_ad.content)
 		# 	keywords=SkillSpider.get_keywords(soup)
-		# 	SkillSpider.add_keywords_to_database(keywords)
+		# 	SkillSpider.add_keywords_to_database(keywords, data['job_title'])
 		# 	time.sleep(4)
 		
 		job_scores = []
