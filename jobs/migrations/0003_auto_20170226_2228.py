@@ -13,6 +13,7 @@ def load_keywords(apps, schema_editor):
 	for i, row in enumerate(csv_f):
   		newky = Keyword(id=i,name=row[0],category=row[1])
   		newky.save
+  		print (newky.name)
 class Migration(migrations.Migration):
 
     dependencies = [
