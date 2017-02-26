@@ -7,8 +7,8 @@ from django.db import migrations
 import csv
 
 def load_keywords(apps, schema_editor):
-	Keyword = apps.get_model("keywords", "Keyword")
-	f = open('keywords.csv')
+	Keyword = apps.get_model("jobs", "Keyword")
+	f = open('../keywords.csv')
 	csv_f = csv.reader(f)
 	for i, row in enumerate(csv_f):
   		newky = Keyword(id=i,name=row[0],category=row[1])
