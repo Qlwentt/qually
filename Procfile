@@ -1,2 +1,2 @@
 web: gunicorn qually_dj.wsgi --log-file -
-seed: pwd
+seed: python manage.py runscript seed

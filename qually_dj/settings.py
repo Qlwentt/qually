@@ -64,6 +64,7 @@ INSTALLED_APPS = [
         'django.contrib.messages',
         'django.contrib.staticfiles',
         # 'djangosecure',
+        'django_extensions',
 ]
 ROOT_URLCONF = 'qually_dj.urls'
 
