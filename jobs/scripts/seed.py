@@ -15,7 +15,7 @@ def run():
 	dataReader = csv.reader(open(csv_filepathname), delimiter=',', quotechar='"')
 
 	for row in dataReader:
-	    if row[0] != '' && row[0] != " "
+	    if row[0] != '' and row[0] != " "
 		    keyword=Keyword()
 		    keyword.name=row[0]
 		    keyword.category=row[1]
