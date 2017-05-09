@@ -5,7 +5,7 @@ import sys
 import dotenv
 
 
-dotenv.read_dotenv() #take this line out for production
+# dotenv.read_dotenv() #take this line out for production
 
 print "sys args: {}".format(sys.argv)
 
@@ -14,7 +14,6 @@ if __name__ == "__main__":
     # if you need to run collect staticfiles again, comment out the try block with sys.argv[1]
     try:
         if sys.argv[1] == 'runserver':
-            # print "helooooooooooooooooooooooooooooooo"
             # print "in dev: {}".format(sys.argv)
             dotenv.read_dotenv()
     except IndexError:
