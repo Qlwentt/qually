@@ -8,7 +8,7 @@ csv_filepathname= os.path.join(BASE_DIR, "keywords.csv")
 sys.path.append(PROJECT_ROOT)
 os.environ['DJANGO_SETTINGS_MODULE'] ='qually.settings'
 
-from qually.jobs.models import Keword
+from models import Keword
 
 import csv
 
