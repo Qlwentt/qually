@@ -205,7 +205,7 @@ class JobAd(object):
 
 		common_keywords = []
 		keyword_dict = {}
-		for keyword in Keywords.objects.all():
+		for keyword in Keyword.objects.all():
 			keyword_dict[keyword.name.lower()]=True 
 
 		for word in common_words:
