@@ -200,7 +200,7 @@ class JobAd(object):
 			cv_dict[word]=True
 
 		for word in set(jd_words):
-			if cv_dict[word]:
+			if cv_dict.get(word, None):
 				common_words.append(word)
 
 		common_keywords = []
@@ -209,7 +209,7 @@ class JobAd(object):
 			keyword_dict[keyword.name.lower()]=True 
 
 		for word in common_words:
-			if keyword_dict[word]:
+			if keyword_dict.get(word, None):
 				common_keywords.append(word)
 			
 		self.matching_words = common_words
