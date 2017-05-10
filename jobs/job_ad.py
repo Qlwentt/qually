@@ -209,10 +209,10 @@ class JobAd(object):
 			keyword_dict[keyword.name.lower()]=True 
 
 		for word in common_words:
-			if keyword_dict.get(word, None):
+			if keyword_dict.get(word.lower(), None):
 				common_keywords.append(word)
 			
-		self.matching_words = common_words
+		self.matching_words = common_keywords
 
 
 		# cv_words = resume.split()
