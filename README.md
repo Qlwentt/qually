@@ -3,19 +3,21 @@
 Qually is a web application that shows users jobs that match their qualifications. There are two ways qually determines what jobs a user is quallyfied for *years of experience* and *resume keywords*
 
 ## Desktop View
-
-
+![Desktop screen shots](/desktop_view.png?raw=true "Desktop screen shots")
 
 
 ## Mobile View
 
-
+![Mobile screen shots](/qually_mobile.png?raw=true "Mobile screen shots")
 
 
 ## Features
 - Search for jobs
 - Create a profile
 - Save jobs
+
+## Architecture
+![ERD Diagram](/my_project_visualized.png?raw=true "ERD Diagram")
 
 ## Technologies
 
