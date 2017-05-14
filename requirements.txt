@@ -15,4 +15,4 @@ gunicorn==19.6.0
 whitenoise==3.3.0
 django-secure==1.0.1
 dj-database-url==0.4.2
-
+django-extensions==1.7.9

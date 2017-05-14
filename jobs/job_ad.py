@@ -191,46 +191,71 @@ class JobAd(object):
 
 	def score_resume(self, resume):
 		cv_words = resume.split()
-		rezscore = 0
-		cv_kws = []#defaultdict(lambda: 0)
-		cj=CachedJob.objects.get(key=self.key)
+		jd_words = self.content.split()
+		
+		cv_dict = {}
+		common_words = []
 
-		#if there are already for the job ad
-		if cj.keywords.all():
-			# get keywords for resume
-			print "I didn't have to look for job ad keywords"
-			for keyword in Keyword.objects.all():
-				if keyword.name.lower() in [x.lower() for x in cv_words]:
-					cv_kws.append(keyword.name)
-			
-			# get already saved keywords for job ad 
-			jd_kws = self.keywords
-			
-			# print jd_kws
-			# print cv_kws
-		#you have to get keywords for both resume and job ad
-		else:  
-			jd_kws=[]
+		for word in cv_words:
+			cv_dict[word]=True
 
-			# cv_words = tb(resume).words
-			jd_words = self.content.split()
+		for word in set(jd_words):
+			if cv_dict.get(word, None):
+				common_words.append(word)
+
+		common_keywords = []
+		keyword_dict = {}
+		for keyword in Keyword.objects.all():
+			keyword_dict[keyword.name.lower()]=True 
+
+		for word in common_words:
+			if keyword_dict.get(word.lower(), None):
+				common_keywords.append(word)
+			
+		self.matching_words = common_keywords
+
+
+		# cv_words = resume.split()
+		# rezscore = 0
+		# cv_kws = []#defaultdict(lambda: 0)
+		# cj=CachedJob.objects.get(key=self.key)
+
+		# #if there are already for the job ad
+		# if cj.keywords.all():
+		# 	# get keywords for resume
+		# 	print "I didn't have to look for job ad keywords"
+		# 	for keyword in Keyword.objects.all():
+		# 		if keyword.name.lower() in [x.lower() for x in cv_words]:
+		# 			cv_kws.append(keyword.name)
+			
+		# 	# get already saved keywords for job ad 
+		# 	jd_kws = self.keywords
+			
+		# 	# print jd_kws
+		# 	# print cv_kws
+		# #you have to get keywords for both resume and job ad
+		# else:  
+		# 	jd_kws=[]
+
+		# 	# cv_words = tb(resume).words
+		# 	jd_words = self.content.split()
 		
 		
-		#build dictionaries with keyword being key and
-		#number of times it's occured as value
-			for keyword in Keyword.objects.all():
-				if keyword.name.lower() in [x.lower() for x in cv_words]:
-					cv_kws.append(keyword.name)
-				if keyword.name.lower() in [x.lower() for x in jd_words]: 
-					jd_kws.append(keyword.name)
-					keyword.cachedjob_set.add(cj) #add this keyword in database for this job ad
+		# #build dictionaries with keyword being key and
+		# #number of times it's occured as value
+		# 	for keyword in Keyword.objects.all():
+		# 		if keyword.name.lower() in [x.lower() for x in cv_words]:
+		# 			cv_kws.append(keyword.name)
+		# 		if keyword.name.lower() in [x.lower() for x in jd_words]: 
+		# 			jd_kws.append(keyword.name)
+		# 			keyword.cachedjob_set.add(cj) #add this keyword in database for this job ad
 			
-			print cv_kws
-			print jd_kws
-			#set keywords for this job ad
-			# self.keywords=cv_kws
-		#return the number of keywords that occur in both
-		self.matching_words = [w for w in cv_kws if w in jd_kws]
+		# 	print cv_kws
+		# 	print jd_kws
+		# 	#set keywords for this job ad
+		# 	# self.keywords=cv_kws
+		# #return the number of keywords that occur in both
+		# self.matching_words = [w for w in cv_kws if w in jd_kws]
 		return len(self.matching_words)
 
 
